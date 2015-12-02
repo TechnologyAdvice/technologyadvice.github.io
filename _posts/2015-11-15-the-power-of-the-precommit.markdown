@@ -7,31 +7,41 @@ author: kent.safranski
 cover: /assets/images/covers/checklist.png
 ---
 
-Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer est ante, tristique et lectus sit amet, convallis varius dui. Phasellus et tristique lorem. Nulla et faucibus neque. 
+When you're writing code there's typically a lot more than just putting code into an IDE. Your writing & running tests, doing static analysis, checking deploys and so on. Anywhere that automation can (intelligently) be added into your workflow can be a huge benefit. Precommits offer a way to automate repetitive task easily.
 
-> Suspendisse gravida lacus consectetur magna ornare, sed convallis mi accumsan.
+There are a number of [Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) but precommit is one of the more useful. From the previous link:
 
-Quisque ut elementum eros. Proin sit amet dui mauris. Nullam fringilla id dolor id mattis. Duis scelerisque neque risus, sed iaculis massa fringilla ut. Cras elit mi, consequat convallis efficitur quis, efficitur vitae lorem.
+> The pre-commit hook is run first, before you even type in a commit message. It’s used to inspect the snapshot that’s about to be committed, to see if you’ve forgotten something, to make sure tests run, or to examine whatever you need to inspect in the code.
+
+Basically, before you commit your code it runs your tasks and either a) exits `0` or b) exits with an error from whatever task was run. This means that you can do some work, get everything ready to commit and then have a final check to ensure you didn't miss anything.
+
+Pre-commit hooks can be added in the Git config, but this only applies to your local environment. One tool we've found extremely useful at [TA](http://www.technologyadvice.com) is the [NPM precommit-hook module](https://www.npmjs.com/package/precommit-hook).
+
+Setup is simple; install the module, makes sure you have npm scripts defined and tell it what tasks to run precommit.
+
+#### Installation
+
+```
+npm install precommit-hook --save-dev
+```
+
+#### Add Some Scripts
+
+In your `package.json` either use the tasks you have defined, or define some to run:
 
 {% highlight javascript %}
-try {
-    myroutine(); // may throw three types of exceptions
-} catch (e if e instanceof TypeError) {
-    // statements to handle TypeError exceptions
-} catch (e if e instanceof RangeError) {
-    // statements to handle RangeError exceptions
-} catch (e if e instanceof EvalError) {
-    // statements to handle EvalError exceptions
-} catch (e) {
-    // statements to handle any unspecified exceptions
-    logMyErrors(e); // pass exception object to error handler
+"scripts": {
+  "lint": "eslint /src --fix",
+  "test": "mocha /src --recursive"
 }
 {% endhighlight %}
 
-Pellentesque a sapien ante. Proin tincidunt quam porta velit vestibulum, at malesuada nibh laoreet. 
+#### Define the Precommit
 
-Suspendisse potenti. Nullam interdum congue odio, id pellentesque ante accumsan ut. Nullam tortor libero, tristique vitae mollis non, pulvinar eget diam.
+Also in your `package.json`, define the following to specify the tasks to run:
 
-Aenean mollis aliquet tincidunt. Nullam sit amet augue imperdiet nisl eleifend gravida. Vivamus id erat nec nisl mattis venenatis non id dui. Aenean ac commodo sapien. In finibus dictum arcu eu semper. Phasellus eget dui vel arcu ornare gravida eu eu nunc. Phasellus iaculis justo et lectus convallis ornare.
+{% highlight javascript %}
+"pre-commit": [ "lint", "test" ]
+{% endhighlight %}
 
-Nam eu tincidunt ipsum. Sed tortor ex, venenatis vitae libero a, ullamcorper placerat sapien. Fusce vel vulputate magna. Etiam eros metus, tincidunt eget facilisis vitae, gravida ultricies nisi. In mi lacus, tempor ac feugiat ut, lobortis non quam. Nunc eu nisl finibus, rutrum sapien et, imperdiet purus.
+That's it! Now when anyone commits on the repo your precommit tasks will run and let them know if everything's good or if a test or lint check is failing!
