@@ -4,7 +4,7 @@ title:  "The Power of Precommits"
 date:   2015-11-15 10:00:00
 categories: git development
 author: kent.safranski
-cover: /assets/images/covers/checklist.png
+cover: /assets/images/covers/checklist.jpg
 ---
 
 When you're writing code there's typically a lot more than just putting code into an IDE. Your writing & running tests, doing static analysis, checking deploys and so on. Anywhere that automation can (intelligently) be added into your workflow can be a huge benefit. Precommits offer a way to automate repetitive task easily.

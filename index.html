@@ -1,13 +1,13 @@
 ---
 layout: default
 title: Home
-cover: assets/images/blog-bg.png
+cover: assets/images/blog-bg.jpg
 about: 'about.html'
 logo: assets/images/ta-logo.png
 ---
 
 <header class="main-header {% if page.cover %}" style="background-image: url({{ page.cover }}) {%else%}no-cover{% endif %}">
-    <nav class="main-nav overlay clearfix">
+    <nav class="main-nav overlay clearfix" style="z-index: 1">
             {% if page.logo %}
                 <a class="blog-logo" href="{{ site.baseurl }}">
                     <img src="{{ page.logo }}" alt="Blog Logo" />
@@ -15,7 +15,7 @@ logo: assets/images/ta-logo.png
             {% endif %}
         <a class="subscribe-button icon-feed" href="{{ site.baseurl }}rss.xml">Subscribe</a>
     </nav>
-    <div class="vertical">
+    <div class="vertical" style="z-index: 1; position: relative">
         <div class="main-header-content inner">
             <h1 class="page-title">TA<span style="color: #A8F151">Develops</span></h1>
             <h2 class="page-description" style="font-weight: 400">
@@ -23,7 +23,8 @@ logo: assets/images/ta-logo.png
             </h2>
         </div>
     </div>
-    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
+    <a style="z-index: 1" class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
+    <span class="cover-overlay"></span>
 </header>
 
 

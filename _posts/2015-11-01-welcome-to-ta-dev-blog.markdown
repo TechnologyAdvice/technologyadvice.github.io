@@ -4,7 +4,7 @@ title:  "Welcome to the TA Dev Blog"
 date:   2015-11-01 10:00:00
 categories: technologyadvice community
 author: tom.shawver
-cover: /assets/images/covers/books.png
+cover: /assets/images/covers/books.jpg
 ---
 
 Welcome to the [TechnologyAdvice](http://www.technologyadvice.com) developer blog!
