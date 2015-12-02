@@ -20,7 +20,7 @@ post_class: post-template
         <header class="post-header">
             <h1 class="post-title">{{ page.title }}</h1>
             <section class="post-meta">                
-                {{ author.name }}<time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time>
+                {{ author.name }} <time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time>
                 {% if page.categories.size > 0 %} 
                     {{ page.categories | array_to_sentence_string | prepend: 'on ' }} 
                 {% endif %}
