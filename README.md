@@ -25,3 +25,5 @@ To view your post install [Jekyll](https://jekyllrb.com/) and from the root run 
 
 When you have written your post and feel it is complete, submit a PR with basic information. Have someone else on the team review the PR and (when ready) accept it.
 
+Once the post has been thoroughly reviewed and approved merging into `master` will publish the post on the live blog.
+
