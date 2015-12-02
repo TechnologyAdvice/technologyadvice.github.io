@@ -1,0 +1,50 @@
+name: TADevs
+description: TechnologyAdvice Developer Blog
+meta_description: "Blog about JavaScript, Node, Docker, React, and much more!"
+
+markdown: redcarpet
+highlighter: pygments
+logo: false
+paginate: 5
+baseurl: /
+domain_name: 'http://technologyadvice.github.io'
+google_analytics: 'UA-XXXXXXXX-X'
+permalink: pretty
+
+# Details for the RSS feed generator
+url:            'http://technologyadvice.github.io'
+author:         'TechnologyAdvice'
+
+gems: [jekyll-paginate]
+
+authors:
+  tom.shawver:
+    pic: tom.shawver.jpg
+    name: Tom Shawver
+    display_name: Tom
+    email: tom.shawver@technologyadvice.com
+    bio: |
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
+      do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+      nisi ut aliquip ex ea commodo consequat.
+  kent.safranski:
+    pic: kent.safranski.jpg
+    name: Kent Safranski
+    display_name: Kent
+    email: kent.safranski@technologyadvice.com
+    bio: |
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
+      do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+      nisi ut aliquip ex ea commodo consequat.
+  levi.thomason:
+    pic: levi.thomason.jpg
+    name: Levi Thomason
+    display_name: Levi
+    email: levi.thomason@technologyadvice.com
+    bio: |
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
+      do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+      nisi ut aliquip ex ea commodo consequat.
