@@ -1,6 +1,6 @@
 # TADevelops Blog
 
-**[http://technologyadvice.github.io/](technologyadvice.github.io)
+**[technologyadvice.github.io](http://technologyadvice.github.io/)
 
 The goal of this project is to provide a platform for all members of the [TechnologyAdvice](http://www.technologyadvice.com) development team to contribute to a blog dedicated to topics surrounding work at TA.
 
