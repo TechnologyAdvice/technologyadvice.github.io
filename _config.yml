@@ -47,10 +47,11 @@ authors:
   josh.habdas:
     pic: josh.habdas.jpg
     name: Josh Habdas
-    display_name: Josh H
+    display_name: Josh
     email: josh.habdas@technologyadvice.com
     bio: |
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-      do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-      nisi ut aliquip ex ea commodo consequat.
+      Josh is a Senior Software Engineer at TA focused on Web Platform work
+      and helping build our open source tools. He's passionate about expressive
+      code and minimalism. You can read more of Josh's tech articles on his
+      personal tech blog at http://habd.as.
+
