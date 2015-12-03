@@ -21,7 +21,6 @@ authors:
   tom.shawver:
     pic: tom.shawver.jpg
     name: Tom Shawver
-    display_name: Tom
     email: tom.shawver@technologyadvice.com
     bio: |
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
@@ -31,17 +30,14 @@ authors:
   kent.safranski:
     pic: kent.safranski.jpg
     name: Kent Safranski
-    display_name: Kent
     email: kent.safranski@technologyadvice.com
     bio: |
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
-      do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-      nisi ut aliquip ex ea commodo consequat.
+      Kent is architect at TA and heavily involved in the team's work with 
+      Node.js, Docker, infrastructure and services. He is passionate about 
+      clean, modular development and workflow automation.
   levi.thomason:
     pic: levi.thomason.jpg
     name: Levi Thomason
-    display_name: Levi
     email: levi.thomason@technologyadvice.com
     bio: |
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
