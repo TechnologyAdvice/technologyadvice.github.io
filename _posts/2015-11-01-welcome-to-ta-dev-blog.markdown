@@ -5,6 +5,7 @@ date:   2015-11-01 10:00:00
 categories: technologyadvice community
 author: tom.shawver
 cover: /assets/images/covers/books.jpg
+description: Welcome to the TechnologyAdvice Developer Blog!
 ---
 
 Welcome to the [TechnologyAdvice](http://www.technologyadvice.com) developer blog!

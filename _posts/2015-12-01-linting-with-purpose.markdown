@@ -5,6 +5,7 @@ date:   2015-12-01 10:00:00
 categories: development linting
 author: levi.thomason
 cover: /assets/images/covers/cleaning-supplies.jpg
+description: Code linting is a powerful tool in your arsenal. Make it even more powerful by modularizing it and keeping your rules consistent.
 ---
 
 Nullam vel aliquam dui, scelerisque euismod leo. Phasellus vitae laoreet nisl. Sed ultrices ac tellus vitae iaculis. Nulla porta ultrices laoreet. Quisque vel dolor sed elit ullamcorper facilisis. 
