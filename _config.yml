@@ -23,24 +23,35 @@ authors:
     name: Tom Shawver
     email: tom.shawver@technologyadvice.com
     bio: |
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
-      do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+      do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
       nisi ut aliquip ex ea commodo consequat.
   kent.safranski:
     pic: kent.safranski.jpg
     name: Kent Safranski
     email: kent.safranski@technologyadvice.com
     bio: |
-      Kent is architect at TA and heavily involved in the team's work with 
-      Node.js, Docker, infrastructure and services. He is passionate about 
+      Kent is architect at TA and heavily involved in the team's work with
+      Node.js, Docker, infrastructure and services. He is passionate about
       clean, modular development and workflow automation.
   levi.thomason:
     pic: levi.thomason.jpg
     name: Levi Thomason
     email: levi.thomason@technologyadvice.com
     bio: |
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
-      do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+      do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
       nisi ut aliquip ex ea commodo consequat.
+  josh.habdas:
+    pic: josh.habdas.jpg
+    name: Josh Habdas
+    display_name: Josh
+    email: josh.habdas@technologyadvice.com
+    bio: |
+      Josh is a Senior Software Engineer at TA focused on Web Platform work
+      and helping build our open source tools. He's passionate about expressive
+      code and minimalism. You can read more of Josh's tech articles on his
+      personal tech blog at http://habd.as.
+
