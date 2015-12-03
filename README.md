@@ -21,7 +21,7 @@ cover: /assets/images/covers/COVER_IMAGE.png
 Contents of blog post...
 ```
 
-To view your post install [Jekyll](https://jekyllrb.com/) and from the root run `jekyll serve`.
+A `devlab.yml` file is provided to make running the blog in a container simple. To view your post simply run `lab serve`.
 
 When you have written your post and feel it is complete, submit a PR with basic information. Have someone else on the team review the PR and (when ready) accept it.
 

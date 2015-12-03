@@ -1,0 +1,5 @@
+from: jekyll/jekyll:latest
+expose: 
+  - 4000:4000
+tasks:
+  serve: jekyll serve
