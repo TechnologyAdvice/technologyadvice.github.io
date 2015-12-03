@@ -24,9 +24,9 @@ authors:
     display_name: Tom
     email: tom.shawver@technologyadvice.com
     bio: |
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
-      do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+      do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
       nisi ut aliquip ex ea commodo consequat.
   kent.safranski:
     pic: kent.safranski.jpg
@@ -34,9 +34,9 @@ authors:
     display_name: Kent
     email: kent.safranski@technologyadvice.com
     bio: |
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
-      do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+      do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
       nisi ut aliquip ex ea commodo consequat.
   levi.thomason:
     pic: levi.thomason.jpg
@@ -44,7 +44,17 @@ authors:
     display_name: Levi
     email: levi.thomason@technologyadvice.com
     bio: |
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
-      do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+      do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+      nisi ut aliquip ex ea commodo consequat.
+  josh.habdas:
+    pic: josh.habdas.jpg
+    name: Josh Habdas
+    display_name: Josh H
+    email: josh.habdas@technologyadvice.com
+    bio: |
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+      do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
       nisi ut aliquip ex ea commodo consequat.
