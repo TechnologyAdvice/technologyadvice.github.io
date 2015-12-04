@@ -36,6 +36,11 @@ cover: /assets/images/covers/keyboard.jpg
   
   ul.about-profiles li div p {
     font-size: .75em;
+    margin-bottom: 0;
+  }
+  
+  ul.about-profiles li div hr {
+    margin: 15px 0;
   }
   
   ul.about-profiles li div span.image {
@@ -51,6 +56,17 @@ cover: /assets/images/covers/keyboard.jpg
     background-repeat: no-repeat;
     background-position: center center;
   }
+  
+  ul.about-profiles ul.post-expander {
+    margin: 0;
+    padding: 0;
+  }
+  
+  ul.about-profiles ul.post-expander li {
+    margin: 0;
+    padding: 0;
+    font-size: .75em;
+  }
 </style>
 
 
@@ -65,7 +81,48 @@ TADevelops is a blog developed by the engineering team behind [TechnologyAdvice]
     <span class="image" style="background-image: url('/assets/images/profiles/{{ author[1].pic }}');"></span>
     <strong>{{ author[1].name }}</strong>
     <p>{{ author[1].bio }}</p>
+    <hr>
+    <p>
+    <strong>Posts By {{ author[1].name }}:</strong><br>
+    <ul class="post-expander">
+    {% assign counter = 0 %}
+    {% for post in site.posts %}
+      {% if post.author == author[0] %}
+        {% assign counter=counter | plus:1 %}
+        <li><a href="{{ post.url }}">{{ post.title }}</a> on {{ post.categories | array_to_sentence_string }}</li>
+      {% endif %}
+    {% endfor %}
+    {% if counter == 0 %}None Yet! <a href="mailto:{{ author[1].email }}">Email {{ author[1].name }}</a> and request some content :){% endif %}
+    </ul>
+    </p>
+    
     </div>
   </li>
 {% endfor %}
 </ul>
+
+<script>
+(function () {
+  $('body').append('<style>.pe-hide { display: none; }');
+  $('.post-expander').each(function () {
+    var current = $(this);
+    var maxItems = 3;
+    var items = current.children('li');
+    if (items.length > maxItems) {
+      // Add expander
+      $(this).append('<li class="pe-expander"><a href="#">Show More...</a></li>');
+      // Hide items gt max
+      items.each(function (i) {
+        if (i >= maxItems) {
+          $(this).addClass('pe-hide');
+        }
+      });
+      // Expander click
+      current.children('.pe-expander').on('click', function () {
+        current.children('.pe-hide').removeClass('pe-hide');
+        current.children('.pe-expander').remove();
+      })
+    }
+  });
+})();
+</script
