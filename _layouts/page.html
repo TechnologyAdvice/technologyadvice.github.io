@@ -3,10 +3,13 @@ layout: default
 post_class: post-template page-template
 ---
 
-<nav class="main-nav clearfix">
-    <a class="back-button icon-arrow-left" href="{{ site.baseurl }}">Home</a>
-    <a class="subscribe-button icon-feed" href="{{ site.baseurl }}rss.xml">Subscribe</a>
-</nav>
+<header class="main-header post-head {% if page.cover %}" style="background-image: url({{ page.cover }}) {%else%}no-cover{% endif %}">
+    <nav class="main-nav {% if page.cover %} overlay {% endif %} clearfix" style="z-index: 1;">
+        <a class="back-button icon-arrow-left" href="{{ site.baseurl }}">Home</a>
+        <a class="subscribe-button icon-feed" href="{{ site.baseurl }}rss.xml">Subscribe</a>
+    </nav>
+    <span class="cover-overlay"></span>
+</header>
 
 
 <main class="content" role="main">
@@ -22,7 +25,8 @@ post_class: post-template page-template
         </header> -->
 
         <h1 class="post-title">{{ page.title }}</h1>
-
+        
+        <br>
         <section class="post-content">
             {{content}}
         </section>
