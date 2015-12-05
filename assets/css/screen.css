@@ -485,6 +485,16 @@ margin on the iframe, cause it breaks stuff. */
     width: 80%;
 }
 
+.main-header .inner a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.8);
+}
+
+.main-header .inner a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
 .main-nav {
     position: relative;
     padding: 35px 40px;
