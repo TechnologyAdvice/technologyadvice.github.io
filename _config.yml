@@ -54,4 +54,11 @@ authors:
       and helping build our open source tools. He's passionate about expressive
       code and minimalism. You can read more of Josh's tech articles on his
       personal tech blog at http://habd.as.
+  peter.svetlichny:
+    pic: peter.svetlichny.jpg
+    name: Peter Svetlichny
+    display_name: Peter
+    email: peter.svetlichny@technologyadvice.com
+    bio: |
+      Peter is a Software Engineer on the backend at TA, with a background in music and creative writing. He's interested in modular development, Docker, and all things Node.js.
 
