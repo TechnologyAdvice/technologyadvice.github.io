@@ -1074,6 +1074,69 @@ body:not(.post-template) .post-title {
 /* ==========================================================================
    6. Author profile
    ========================================================================== */
+   
+  ul.about-profiles {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  ul.about-profiles li {
+    display: block;
+    margin: 25px 0;
+    padding: 0;
+  }
+  
+  ul.about-profiles li div {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 15px;
+    border: 1px solid #e8e8e8;
+    border-radius: 3px;
+    background-color: #fbfbfb;
+    transition: .3s ease background-color, .3s ease box-shadow;
+  }
+  
+  ul.about-profiles li div:hover {
+    box-shadow: 0 0 15px 0 rgba(0,0,0,.1);
+    background-color: #fff;
+  }
+  
+  ul.about-profiles li div p {
+    font-size: .75em;
+    margin-bottom: 0;
+  }
+  
+  ul.about-profiles li div hr {
+    margin: 15px 0;
+  }
+  
+  ul.about-profiles li div span.image {
+    display: block;
+    float: left;
+    border: 1px solid #e8e8e8;
+    padding: 4px;
+    margin: 0 15px 0 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  
+  ul.about-profiles ul.post-expander {
+    margin: 0;
+    padding: 0;
+  }
+  
+  ul.about-profiles ul.post-expander li {
+    margin: 0;
+    padding: 0;
+    font-size: .75em;
+  }
 
 .post-head.main-header {
     height: 65%;
