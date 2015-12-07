@@ -59,4 +59,4 @@ TADevelops is a blog developed by the engineering team behind [TechnologyAdvice]
     }
   });
 })();
-</script
+</script>
