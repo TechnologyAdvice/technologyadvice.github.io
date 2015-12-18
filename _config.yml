@@ -60,5 +60,14 @@ authors:
     display_name: Peter
     email: peter.svetlichny@technologyadvice.com
     bio: |
-      Peter is a Software Engineer on the backend at TA, with a background in music and creative writing. He's interested in modular development, Docker, and all things Node.js.
-
+      Peter is a Software Engineer on the backend at TA, with a background in
+      music and creative writing. He's interested in modular development,
+      Docker, and all things Node.js.
+  thomas.vaughn:
+    pic: thomas.vaughn.jpg
+    name: Thomas Vaughn
+    email: thomas.vaughn@technologyadvice.com
+    bio: |
+      Thomas is a Senior Software Engineer at TA focused on backend work. He's a
+      recovering PHP developer who is passionate about Node.js, the local tech
+      community, ice hockey and bacon.
