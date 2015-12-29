@@ -2,10 +2,11 @@
 layout: post
 title: "Using ES7 Decorators with Babel 6"
 date: 2015-12-29T10:00:00-05:00
-categories: [development]
 comments: true
-tags: [javascript, transpiling]
 author: josh.habdas
+categories: [development]
+tags: [javascript, transpiling]
+cover: /assets/images/covers/broken-bridge.jpg
 description: Upgrading to Babel 6 does not mean dropping decorators. Learn to use ES7 decorators with Babel 6.
 ---
 
