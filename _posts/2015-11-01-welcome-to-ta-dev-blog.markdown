@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Welcome to the TA Dev Blog"
-date:   2015-11-01 10:00:00
+title: "Welcome to the TA Dev Blog"
+date: 2015-11-01 10:00:00
 categories: technologyadvice community
 author: tom.shawver
 cover: /assets/images/covers/books.jpg
