@@ -9,13 +9,7 @@ baseurl: /
 domain_name: 'http://technologyadvice.github.io'
 google_analytics: 'UA-XXXXXXXX-X'
 permalink: pretty
-
-# GitHub Pages Gem secret sauce
-# http://erictrinh.com/posts/jekyll-and-gh-pages/
-# http://jekyllrb.com/docs/troubleshooting/
 excerpt_separator: ""
-safe: true
-lsi: false
 
 # Details for the RSS feed generator
 url:            'http://technologyadvice.github.io'
