@@ -37,9 +37,9 @@ module: {
       query: {
         cacheDirectory: true,
         plugins: [
-          'node_modules/babel-plugin-transform-runtime',
-          'node_modules/babel-plugin-add-module-exports',
-          'node_modules/babel-plugin-transform-decorators-legacy',
+          'transform-runtime',
+          'add-module-exports',
+          'transform-decorators-legacy',
         ],
         presets: ['es2015', 'react', 'stage-1'],
       },
