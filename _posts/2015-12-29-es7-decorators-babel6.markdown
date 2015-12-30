@@ -2,6 +2,7 @@
 layout: post
 title: "Using ES7 Decorators with Babel 6"
 date: 2015-12-29T10:00:00-05:00
+updated: 2015-12-30T09:00:00-05:00
 comments: true
 author: josh.habdas
 categories: development javascript transpiling
@@ -82,4 +83,4 @@ class MyClass extends Component {
 Note that Decorators and the `@` operator are an ES7 proposal and are subject to change before the specification is finalized.
 
 ## Summary
-In this post I've shown you how to add legacy support for Babel 5 ES7 decorators to your Babel 6 apps using Webpack. Decorators are declarative and awesome, and provide a great way to mixin behaviors to your ES6 classes. Got an example usage for Browserify? If so, please do share in the comments section below. Thanks!
+In this post I've shown you how to add legacy support for Babel 5 ES7 decorators to your Babel 6 apps using Babel and Webpack. Decorators are declarative and awesome, and provide a great way to mixin behaviors to your ES6 classes. Got an example usage for Browserify? If so, please do share in the comments section below. Thanks!
