@@ -9,13 +9,10 @@ baseurl: /
 domain_name: 'http://technologyadvice.github.io'
 google_analytics: 'UA-XXXXXXXX-X'
 permalink: pretty
-excerpt_separator: ""
 
 # Details for the RSS feed generator
 url:            'http://technologyadvice.github.io'
 author:         'TechnologyAdvice'
-
-gems: [jekyll-paginate]
 
 # Markdown Processors
 kramdown:
@@ -25,7 +22,6 @@ kramdown:
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   input: GFM
-
 
 authors:
   tom.shawver:
