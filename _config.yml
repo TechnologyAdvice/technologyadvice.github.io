@@ -9,7 +9,7 @@ paginate: 5
 baseurl: /
 domain_name: 'http://technologyadvice.github.io'
 google_analytics: 'UA-XXXXXXXX-X'
-permalink: pretty
+permalink: /:title/
 
 # Details for the RSS feed generator
 url:            'http://technologyadvice.github.io'
