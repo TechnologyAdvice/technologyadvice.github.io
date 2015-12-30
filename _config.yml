@@ -25,12 +25,6 @@ kramdown:
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   input: GFM
 
-# GitHub Pages secret sauce
-# http://erictrinh.com/posts/jekyll-and-gh-pages/
-safe: true
-lsi: false
-
-# All the cool kids with the pumped up kicks
 authors:
   tom.shawver:
     pic: tom.shawver.jpg
