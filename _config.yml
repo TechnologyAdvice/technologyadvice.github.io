@@ -2,7 +2,8 @@ name: TADevelops
 description: TechnologyAdvice Developer Blog
 meta_description: "Blog about JavaScript, Node, Docker, React, and much more!"
 
-markdown: KramdownPygments
+markdown: redcarpet
+highlighter: pygments
 logo: false
 paginate: 5
 baseurl: /
@@ -14,14 +15,7 @@ permalink: pretty
 url:            'http://technologyadvice.github.io'
 author:         'TechnologyAdvice'
 
-# Markdown Processors
-kramdown:
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  smart_quotes: lsquo,rsquo,ldquo,rdquo
-  input: GFM
+gems: [jekyll-paginate]
 
 authors:
   tom.shawver:
