@@ -22,7 +22,7 @@ Then update your `.babelrc` file to add the legacy decorator support plug-in lik
 
     {
       "presets": ["es2015", "react", "stage-1"],
-      "plugins": ["babel-plugin-transform-decorators-legacy"]
+      "plugins": ["transform-decorators-legacy"]
     }
 
 If you're using Webpack as a transpiler and module bundler, it's possible to target the plug-in at only desired portions of the codebase by passing the name of the `plugin` to the `query` of a loader, as shown in the example here:
