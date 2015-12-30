@@ -8,7 +8,7 @@ logo: false
 paginate: 5
 baseurl: /
 domain_name: 'http://technologyadvice.github.io'
-google_analytics: 'UA-XXXXXXXX-X'
+google_analytics: 'UA-40219271-4'
 permalink: /:title/
 
 # Details for the RSS feed generator
