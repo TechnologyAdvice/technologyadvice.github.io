@@ -71,3 +71,11 @@ authors:
       Thomas is a Senior Software Engineer at TA focused on backend work. He's a
       recovering PHP developer who is passionate about Node.js, the local tech
       community, ice hockey and bacon.
+  david.zukowski:
+    pic: david.zukowski.jpg
+    name: David Zukowski
+    email: david.zukowski@technologyadvice.com
+    bio: |
+      David is a Senior Software Engineer at TA focused on frontend work. He has
+      a love for functional programming, ReactJS, and web application performance
+      and optimization.
