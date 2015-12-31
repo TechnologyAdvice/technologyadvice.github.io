@@ -139,7 +139,7 @@ This seemingly simple change has enormous benefits in practice:
   2. The base component can be freely shared across the application, since the class isn't directly tied to any one store. We can wrap it in entirely different higher order components, `connect` it with totally different state selectors, or even just pass it a plain-old array of todos.
   3. You can now rest easy knowing that if you give your component a set of props, you know _exactly_ how it will function.
 
-The point is: the component no longer cares where it gets its data from, that's not its concern (and rightly so). And though in this case we're using `react-redux` to create the container, the component itself is not actually tied to any specific framework and now behaves just like any other simpleminded React component. There are a slew of other benefits to this pattern, such as the ability to implement performance optimizations for state selectors (see: [reselect](https://github.com/rackt/reselect)), but at the end of the day the important part is that our components are once again sane and devoid of local state. It's 
+The point is: the component no longer cares where it gets its data from, that's not its concern (and rightly so). And though in this case we're using `react-redux` to create the container, the component itself is not actually tied to any specific framework and now behaves just like any other simpleminded React component. There are a slew of other benefits to this pattern, such as the ability to implement performance optimizations for state selectors (see: [reselect](https://github.com/rackt/reselect)), but at the end of the day the important part is that our components are once again sane and devoid of local state.
 
 ## In Summary
 
