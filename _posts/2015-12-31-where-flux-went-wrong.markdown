@@ -91,7 +91,7 @@ We need a new approach.
 
 ## A Better Way Forward
 
-So what can be done resolve this predicament? Enter [Redux](https://github.com/rackt/redux), a Flux paradigm that is better for all the ways that it eschews Flux's original implementation. There are many things that make Redux great, but the focus for this post is something specific that I find many Redux posts gloss over: [react-redux](https://github.com/rackt/react-redux)'s `connect` decorator. What Dan Abramov, Redux’s creator and our lord and savior, figured out was that higher-order components could be used to abstract away the store subscription in a way that not only reduced boilerplate, but totes flipped the script on us and altered how application state enters a component. Let’s take a look:
+So what can be done resolve this predicament? Enter [Redux](https://github.com/rackt/redux), a Flux paradigm that is better for all the ways that it eschews Flux's original implementation. There are many things that make Redux great, but the focus for this post is something specific that I find many Redux posts gloss over: [react-redux](https://github.com/rackt/react-redux)'s `connect` decorator. What [Dan Abramov](https://twitter.com/dan_abramov), Redux’s creator and our lord and savior, figured out was that higher-order components could be used to abstract away the store subscription in a way that not only reduced boilerplate, but totes flipped the script on us and altered how application state enters a component. Let’s take a look:
 
 {% highlight javascript %}
 import React from 'react'
