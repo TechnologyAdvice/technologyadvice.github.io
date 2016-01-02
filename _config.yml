@@ -23,10 +23,10 @@ authors:
     name: Tom Shawver
     email: tom.shawver@technologyadvice.com
     bio: |
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-      do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-      nisi ut aliquip ex ea commodo consequat.
+      Tom is the CTO of TA, with specializations in architecture, infrastructure,
+      and security. His passions involve building a culture of experimentation and
+      open-source dedication, products that make technology choices easier, and
+      author biographies written in the third person.
   kent.safranski:
     pic: kent.safranski.jpg
     name: Kent Safranski
