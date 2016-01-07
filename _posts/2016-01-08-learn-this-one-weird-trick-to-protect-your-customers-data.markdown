@@ -156,7 +156,7 @@ For users of Node, the Cryptex module can be installed into a project with:
 npm install --save cryptex
 {% endhighlight %}
 
-And you can get your secrets programmatically like this:
+And you can get your secrets programmatically like this, using the environment in the `NODE_ENV` environment variable, or `default` if that's not found:
 
 {% highlight javascript %}
 var cryptex = require('cryptex');
