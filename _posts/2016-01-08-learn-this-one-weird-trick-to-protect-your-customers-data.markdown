@@ -26,7 +26,7 @@ If you have the budget for launching a server cluster to house and safeguard you
 
 The security benefits here are fantastic: Not only are your credentials stored encrypted, the central location allows for passwords to be easily rotated. Once your service securely authenticates with one of these server solutions, it gains access to any credentials for which this particular service has been granted access.
 
-The downsides, though, put this out of reach of smaller teams:
+The downsides, though, put this out of reach for smaller teams:
 
 - Running an additional server cluster in addition to the rest of your app is a significant expense, from both the hardware and maintenance team standpoint
 - It introduces a single point of failure to your application: should that cluster become inaccessible, your entire stack is offline
@@ -207,7 +207,7 @@ This is the least secure-out-of-the-box solution, so don't set this up without a
   
 ## Wrapping up
 
-Cryptex is capable of more than I touched on here, so reading through the [Cryptex Documentation] is encouraged. In particular, if the complexities of Amazon KMS are a turn-off, other key sources are available -- and the consistent API makes it easy to plug other custom ones in.
+Cryptex is capable of more than I touched on here, so reading through the [Cryptex Documentation] is encouraged. In particular, if the complexities of Amazon KMS are a turn-off, other key sources are available -- and the consistent API makes it easy to plug in other custom providers.
 
 But if you've gotten this far and I still haven't convinced you how important it is to protect your customers' private data with at least the same level of security you require of their own accounts, let me pose a different question: What do you think your customers would prefer?
 
