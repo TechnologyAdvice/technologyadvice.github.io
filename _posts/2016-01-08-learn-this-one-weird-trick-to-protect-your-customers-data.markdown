@@ -8,7 +8,7 @@ cover: /assets/images/covers/books.jpg
 description: With so much focus on secure user passwords recently, there's surprisingly little about secure database and service credentials. Encrypting your credentials against everyone from your CI to your engineers can be simple and quick to implement.
 ---
 
-In your web application, how secure do you require yours users' credentials to be? Do you require passwords to be a certain length, with enough kinds of different characters? Maybe you're more progressive and employ two-factor auth, or alternative auth like biometrics or single-use SMS keys. If you do use passwords, maybe you're using a compute-expensive hashing algorithm like bcrypt to keep them safe. Maybe you're encrypting your entire database on disk to keep your users as safe as possible. Nothing short of an attacker compromising your live database could leak that data out.
+In your web application, how secure do you require your users' credentials to be? Do you require passwords to be a certain length, with enough kinds of different characters? Maybe you're more progressive and employ two-factor auth, or alternative auth like biometrics or single-use SMS keys. If you do use passwords, maybe you're using a compute-expensive hashing algorithm like bcrypt to keep them safe. Maybe you're encrypting your entire database on disk to keep your users as safe as possible. Nothing short of an attacker compromising your live database could leak that data out.
 
 Quick sanity check: right now, where can I find the secret used by your production application to authenticate to your database?
 
@@ -218,4 +218,5 @@ But if you've gotten this far and I still haven't convinced you how important it
 [turtles all the way down]: https://en.wikipedia.org/wiki/Turtles_all_the_way_down
 [Cryptex]: https://github.com/TechnologyAdvice/Cryptex
 [Cryptex Documentation]: https://github.com/TechnologyAdvice/Cryptex/blob/master/README.md
+[AWS CLI tool]: http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html
 [Node.js]: http://nodejs.org
