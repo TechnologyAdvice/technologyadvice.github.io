@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Lock Up Your Customer Accounts, Give Away the Key"
-date: 2016-01-08 10:00:00
+date: 2016-01-08 18:00:00
 categories: security
 author: tom.shawver
 cover: /assets/images/covers/usb-cryptex.png
