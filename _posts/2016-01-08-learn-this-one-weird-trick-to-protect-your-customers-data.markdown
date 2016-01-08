@@ -1,21 +1,21 @@
 ---
 layout: post
-title: "Learn this One Weird Trick to Protect Your Customers' Data"
+title: "Lock Up Your Customer Accounts, Give Away the Key"
 date: 2016-01-08 10:00:00
 categories: security
 author: tom.shawver
-cover: /assets/images/covers/books.jpg
+cover: /assets/images/covers/usb-cryptex.png
 description: With so much focus on secure user passwords recently, there's surprisingly little about secure database and service credentials. Encrypting your credentials against everyone from your CI to your engineers can be simple and quick to implement.
 ---
 
-In your web application, how secure do you require your users' credentials to be? Do you require passwords to be a certain length, with enough kinds of different characters? Maybe you're more progressive and employ two-factor auth, or alternative auth like biometrics or single-use SMS keys. If you do use passwords, maybe you're using a compute-expensive hashing algorithm like bcrypt to keep them safe. Maybe you're encrypting your entire database on disk to keep your users as safe as possible. Nothing short of an attacker compromising your live database could leak that data out.
+In your web application, how secure do you require your users' credentials to be? Do you require passwords to be a certain length, with enough kinds of different characters? Maybe you're more progressive and employ two-factor auth, or alternative auth like biometrics or single-use SMS keys. If you do use passwords, maybe you're using a compute or space-expensive hashing algorithm like bcrypt, scrypt, PBKDF2, or Argon2 to keep them safe. Maybe you're encrypting your entire database on disk to keep your users as safe as possible. Nothing short of an attacker compromising your live database could leak that data out.
 
 Quick sanity check: right now, where can I find the secret used by your production application to authenticate to your database?
 
 - Is it committed and pushed up to your remote repo, like Github?
 - Is it stored on a file server, able to be accessed if I compromise some other password, or maybe an IP address?
 - Has it been shared in plain text over email? Chat?
-- Does your continuous integration and/or deployment service have it, maybe saved in an environment variable and possibly just obfuscated in their web UI -- somewhere their engineers could get at it?
+- Does your continuous integration and/or deployment service have it, maybe saved in an environment variable? Is getting your secrets as easy as compromising one of their engineers?
 - Can any of _your_ engineers get at it for a well-crafted bribe?
 
 If any of those things are true, you're boned. You've locked all the windows and left the front door wide open. If you've not been compromised yet, you simply haven't been a valuable enough [target] yet. When will that happen? Will you know?
@@ -211,6 +211,8 @@ Cryptex is capable of more than I touched on here, so reading through the [Crypt
 
 But if you've gotten this far and I still haven't convinced you how important it is to protect your customers' private data with at least the same level of security you require of their own accounts, let me pose a different question: What do you think your customers would prefer?
 
+_(Cover image sourced from this [usb cryptex])_
+
 [target]: http://www.cio.com/article/2600345/security0/11-steps-attackers-took-to-crack-target.html
 [Vault]: https://vaultproject.io/
 [KeyWhiz]: https://square.github.io/keywhiz/
@@ -220,3 +222,4 @@ But if you've gotten this far and I still haven't convinced you how important it
 [Cryptex Documentation]: https://github.com/TechnologyAdvice/Cryptex/blob/master/README.md
 [AWS CLI tool]: http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html
 [Node.js]: http://nodejs.org
+[usb cryptex]: http://www.amazon.com/Special-Edition-Cryptex-Micro-Adapter/dp/B01133M3GQ
