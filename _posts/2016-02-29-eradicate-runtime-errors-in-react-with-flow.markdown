@@ -272,7 +272,7 @@ type Props = {
 // "Let's kick it up a notch!" - Emeril Lagasse
 
 type Props = {
-  todo: Object,
+  todo: Todo,
   onComplete: (todo: Todo) => any,
 }
 {% endhighlight %}
