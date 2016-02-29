@@ -79,7 +79,7 @@ import React from 'react'
 type Props = {
   todo: Object,
   onComplete: Function,
-};
+}
 class TodoListItem extends React.Component {
   props: Props;
 
@@ -105,7 +105,7 @@ type Props = {
     completed: boolean,
   },
   onComplete: Function,
-};
+}
 // ...
 {% endhighlight %}
 
@@ -117,12 +117,12 @@ export type Todo = {
   id: string,
   text: string,
   completed: boolean,
-};
+}
 
 type Props = {
   todo: Todo,
   onComplete: Function,
-};
+}
 // ...
 {% endhighlight %}
 
@@ -140,7 +140,7 @@ export type Todo = {
     id: string,
     name: string,
   },
-};
+}
 
 // and the new and improved render method:
 render() {
@@ -203,7 +203,7 @@ import type { Todo } from './TodoListItem'
 
 type Props = {
   todos: Array<Todo>,
-};
+}
 class TodoList extends React.Component {
   props: Props;
 
@@ -267,14 +267,14 @@ Since we know exactly how our component plans to call `onComplete`, we can expli
 type Props = {
   todo: Todo,
   onComplete: Function,
-};
+}
 
 // "Let's kick it up a notch!" - Emeril Lagasse
 
 type Props = {
   todo: Object,
   onComplete: (todo: Todo) => any,
-};
+}
 {% endhighlight %}
 
 At this point, we've defined the property `onComplete` to be a function that takes a `Todo` as its first and only argument. We don't actually care what that function returns, it's simply a callback, and those guys are super forgettable, so we specify `any` as the return type. With this in place, let's run `flow check` and see what we get:
@@ -299,7 +299,7 @@ type Action = {
   payload?: any,
   error?: boolean,
   meta?: any,
-};
+}
 {% endhighlight %}
 
 Granted, FSA is actually fairly weak in its type constraints, so you could enforce this more strictly as it suits you and your team. Still, this helps when creating your Flux modules:
@@ -328,7 +328,7 @@ export type MySearchFilterState = {
   searchFromDate: number,
   searchToDate: number,
   hasSomeFilterEnabled: boolean,
-};
+}
 
 // consumer component (parent smart component):
 import type { MySearchFilterState } from 'my/redux/module'
