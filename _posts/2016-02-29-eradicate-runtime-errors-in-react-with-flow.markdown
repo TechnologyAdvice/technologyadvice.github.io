@@ -365,7 +365,7 @@ class MyFormComponent extends React.Component {
 }
 {% endhighlight %}
 
-The amazing part about this setup is that if `<MyFormComponent />` decides to not abide by the shape of the filters (as it fails to do above), Flow will catch it without ever having to run the application. It will not only validate the shape of those filters, but will follow them through their entire lifecycle, far outside of the reach of component properties. Whether the error is an additional/malformed property, a missing required property, or an incorrect type, Flow has you covered. If you ever change the shape your state, Flow will help you confirm that the rest the application continues humming along.
+The amazing part about this setup is that if `<MyFormComponent />` decides to not abide by the shape of the filters (as it fails to do above), Flow will catch it without ever having to run the application. It will not only validate the shape of those filters, but will follow them through their entire lifecycle, far outside of the reach of component properties. Whether the error is an additional/malformed property, a missing required property, or an incorrect type, Flow has you covered. If you ever change the shape of your state, Flow will help you confirm that the rest of the application continues humming along.
 
 Flow isn't perfect, it doesn't catch everything just yet and sometimes requires you to write your code in a way that's a bit more explicit, but it's a worthy tradeoff, especially considering the fact that it's actively maintained and constantly improving. It can make guarantees about your codebase that `PropTypes` would only be able to offer as uncaught exceptions in production.
 
