@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Eradicate Runtime Errors in React with Flow"
-date: 2016-02-29 18:00:00
+date: 2016-02-28 18:00:00
 categories: reactjs flow javascript development
 author: david.zukowski
 cover: /assets/images/covers/water.jpg
