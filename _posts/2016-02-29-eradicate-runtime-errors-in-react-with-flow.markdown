@@ -6,6 +6,7 @@ categories: reactjs flow javascript development
 author: david.zukowski
 cover: /assets/images/covers/water.jpg
 description: Catch errors before they happen by statically analyzing your code with Flow.
+comments: true
 disqus: true
 ---
 

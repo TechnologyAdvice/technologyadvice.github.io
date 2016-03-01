@@ -6,6 +6,8 @@ categories: git development
 author: kent.safranski
 cover: /assets/images/covers/checklist.jpg
 description: Development is a lot more than just writing code. Using tools like git precommits helps you automate all those other tasks and ensure they don't get forgotten.
+comments: true
+disqus: true
 ---
 
 When you're writing code there's typically a lot more than just putting code into an IDE. Your writing & running tests, doing static analysis, checking deploys and so on. Anywhere that automation can (intelligently) be added into your workflow can be a huge benefit. Precommits offer a way to automate repetitive task easily.

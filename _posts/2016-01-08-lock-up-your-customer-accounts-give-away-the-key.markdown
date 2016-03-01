@@ -6,6 +6,8 @@ categories: security
 author: tom.shawver
 cover: /assets/images/covers/usb-cryptex.png
 description: With so much focus on secure user passwords recently, there's surprisingly little about secure database and service credentials. Encrypting your credentials against everyone from your CI to your engineers can be simple and quick to implement.
+comments: true
+disqus: true
 ---
 
 In your web application, how secure do you require your users' credentials to be? Do you require passwords to be a certain length, with enough kinds of different characters? Maybe you're more progressive and employ two-factor auth, or alternative auth like biometrics or single-use SMS keys. If you do use passwords, maybe you're using a compute or space-expensive hashing algorithm like bcrypt, scrypt, PBKDF2, or Argon2 to keep them safe. Maybe you're encrypting your entire database on disk to keep your users as safe as possible. Nothing short of an attacker compromising your live database could leak that data out.
