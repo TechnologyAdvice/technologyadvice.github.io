@@ -3,11 +3,12 @@ layout: post
 title: "Where Flux Went Wrong"
 date: 2015-12-31T10:00:00-05:00
 updated: 2015-12-31T09:00:00-05:00
-comments: true
 author: david.zukowski
 categories: development javascript reactjs flux redux
 cover: /assets/images/covers/spiral-stairs.jpg
 description: Regain your sanity by pulling application state out of ReactJS components.
+comments: true
+disqus: true
 ---
 
 > Already comfortable with the history around ReactJS and Flux? Skip to [Flux and Component State](#flux-and-component-state) to jump right into the problem statement.

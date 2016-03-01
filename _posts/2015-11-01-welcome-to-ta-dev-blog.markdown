@@ -6,6 +6,7 @@ categories: technologyadvice community
 author: tom.shawver
 cover: /assets/images/covers/books.jpg
 description: Welcome to the TechnologyAdvice Development Blog!
+comments: false
 ---
 
 Welcome to the [TechnologyAdvice](http://www.technologyadvice.com) development blog!

@@ -3,11 +3,12 @@ layout: post
 title: "Using ES7 Decorators with Babel 6"
 date: 2015-12-29T10:00:00-05:00
 updated: 2015-12-30T09:00:00-05:00
-comments: true
 author: josh.habdas
 categories: development javascript transpiling
 cover: /assets/images/covers/broken-bridge.jpg
 description: Upgrading to Babel 6 does not mean dropping decorators. Learn to use ES7 decorators with Babel 6.
+comments: true
+disqus: true
 ---
 
 When [Babel 6 dropped](http://babeljs.io/blog/2015/10/29/6.0.0/) on my birthday I was taken aback by all the breaking changes, disclaimers and continued push to use the `.babelrc` file [without a lot of justification](http://babeljs.io/blog/2015/10/29/6.0.0/#comment-2342300088) from the maintainers. Nevertheless I knew Babel 6 was the future, so I went ahead and added support to my [React Native Webpack Starter Kit](https://github.com/jhabdas/react-native-webpack-starter-kit/releases/tag/v1.13.3). Everything went smooth given the small scope of the app, but for some app maintainers the Babel 6 upgrade also meant chucking decorators due to [an issue](https://phabricator.babeljs.io/T2645) in Babel 6.

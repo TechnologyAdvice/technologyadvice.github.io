@@ -6,6 +6,7 @@ categories: devlab services
 author: kent.safranski
 cover: /assets/images/covers/container.jpg
 description: We've been working hard on DevLab. The latest version, 1.7.0, adds the ability to use exec and links on services.
+comments: false
 ---
 
 If you've used [DevLab](https://github.com/TechnologyAdvice/DevLab) you know a core capability is spinning up services. Services get linked into your container and make them available ephemerally for easy testing of databases, APIs, micro-services, etc.
