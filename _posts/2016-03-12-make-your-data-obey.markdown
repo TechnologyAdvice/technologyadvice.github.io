@@ -16,7 +16,7 @@ Data is what programming is all about. Applications would be nothing without tha
 
 ## Diving In
 
-Let's start with a simple example; validating a user account. There are some core data points we want to ensure, so a model designating these is a good starting point:
+Let's start with a simple example; validating a user account. There are some core data points we want to ensure, using Obey's `model` method to create a model object is how we start:
 
 {% highlight javascript %}
 import obey from 'obey'
@@ -28,7 +28,7 @@ const user = obey.model({
 })
 {% endhighlight %}
 
-The above should all be fairly easy to understand. Now let's put it into action, saving to a datasource. Let's pretend this is going into a datasource using a CRUD lib, already setup, called `db`. Using the model above:
+The above should all be fairly easy to understand. Now let's put it into action, using the `validate` method, passing the data object, then saving to a datasource. Let's assume this is going into a datasource using a CRUD library, already setup, called `db`. Using the model above:
 
 {% highlight javascript %}
 import db from './db'
@@ -39,6 +39,7 @@ user.validate({
     password: 'p@55w0rd'
 })
 // Assumes a db.create method which accepts an object as argument
+// and returns a promise
 .then(db.create).then(res => {
     console.log('User Created!', res)
 })
@@ -51,7 +52,7 @@ Overall pretty simple stuff. We validate the model, then create the user (or cat
 
 ## Creators
 
-Obey supplies `creators` for generating data using methods that can be predefined. For the `id` we'll use the [node-uuid](https://www.npmjs.com/package/node-uuid) module. Let's revisit the model:
+Obey supplies `creators` for generating data using methods that can be predefined. For the `id` we'll use the [node-uuid](https://www.npmjs.com/package/node-uuid) module. Let's revisit the model, defining a `creator` using the method by the same name:
 
 {% highlight javascript %}
 import obey from 'obey'
@@ -72,11 +73,11 @@ const user = obey.model({
 
 So, now we just pass in the `email` and `password` and our `id` is auto-generated.
 
-But that `password` is still not cool; we don't want to save that in plain-text...
+But that `password` is not cool; we don't want to save that in plain-text...
 
 ## Modifiers
 
-Obey wasn't just built for validation, but also to support coercion and modification. Modifiers allow for doing this in a clean, simple method. Let's revisit the model again:
+Obey wasn't just built for validation, but also to support coercion and modification. Modifiers allow for doing this in a clean, simple method. Let's revisit the model again, usinf the `modifier` method to create one:
 
 {% highlight javascript %}
 import obey from 'obey'
@@ -99,13 +100,13 @@ const user = obey.model({
 })
 {% endhighlight %}
 
-Alright, so now not only does our validation create a UUID, it also encrypts that password for us. We've changed the model to accomplish this, but we validate exactly the same, Obey handles this all automatically based on the modelling we defined in one location.
+Now not only does our validation method create a UUID, it also encrypts the password for us. We've changed the model to accomplish this, but we validate exactly the same, Obey handles this all automatically based on the modelling we defined.
 
-BUT, what about that `email`? Probably want to make sure it's unique...
+But what about that `email` property? Probably want to make sure it's unique...
 
 ## Types
 
-Having that `email` contain one that's already in the datasource would be bad news bears right? Some databases do provide uniqueness integrity checking, but there are a lot that don't. Luckily, `types` are extensible with Obey, so we can add our own check:
+Having that `email` property contain one that's already in the datasource would be bad news, right? Some databases do provide uniqueness integrity checking, but there are a lot that don't. Luckily, `types` are extensible with Obey, so we can add our own check:
 
 {% highlight javascript %}
 import obey from 'obey'
@@ -139,17 +140,17 @@ const user = obey.model({
 })
 {% endhighlight %}
 
-Now when the `validate` method is run we do an asynchronous read on the datasource, check that the email 1) doesn't exist and 2) is a legit email address.
+Now when the `validate` method is run we do a read on the datasource, check that the email 1) doesn't exist and 2) is a valid email address.
 
 What's best is **we do all of this at the data validation level**. Yes, we're still hitting the datasource (really no way around that), but all of our handling of an error condition is in the same place as the rest of the validation error handling.
 
-The code above is also getting a bit unweildy and is probably better abstracted, but Obey is built for that; all of the modifiers, creators, and types can be added in an abstraction then called wherever you create a model.
+The code above is also getting a bit unweildy and is probably better abstracted, but Obey is built for that; all of the modifiers, creators, and types can be added in an abstraction then called wherever you create a model. This makes it easy to share types, modifiers, creators, and the like across multiple models.
 
 But wait, that custom type is asynchronous? Why yes it is. The creators and modifiers can be as well...
 
 ## Embracing Asynchronicity
 
-It's simple to look at data modelling and validation as a synchronous thing, but it really shouldn't be. It limits the power of this important layer of application development.
+It's simple to look at data modelling and validation as a synchronous thing; running through checks and moving on, but it should have more to it than just that. It limits the power of this integral layer of application development.
 
 With everything else in data i/o being asynchronous it's one area where asynchronous processing is not a _nice to have_, it's a **must have**.
 
@@ -180,7 +181,7 @@ user.validate({
 })
 {% endhighlight %}
 
-By embracing asynchronicity everything runs through in the same style, using the same conventions and either moving forward as intended or throwing to the `catch` and being handled cleanly.
+By embracing asynchronicity everything runs through in the same fashion, using the same conventions and either moving forward as intended or throwing to the `catch` and being handled cleanly.
 
 ## Summary
 
