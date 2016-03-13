@@ -62,7 +62,8 @@ import uuid from 'node-uuid'
 obey.creator('uuidCreator', uuid.v4)
 
 const user = obey.model({
-    // The id now specifies that the creator 'uuid' should be used if no value is present
+    // The id now specifies that the creator 'uuid' should be 
+    // used if no value is present
     id: { type: 'uuid', creator: 'uuidCreator' required: true },
     email: { type: 'email', required: true },
     password: { type: 'string', require: true }
@@ -92,7 +93,8 @@ obey.modifier('encrypt', val => argon2.hash(val, salt))
 const user = obey.model({
     id: { type: 'uuid', creator: 'uuidCreator' required: true },
     email: { type: 'email', required: true },
-    // Password now specifies the modifier 'encrypt' should be used on the value
+    // Password now specifies the modifier 'encrypt' should be used to
+    // encrypt the password
     password: { type: 'string', modifier: 'encrypt', require: true }
 })
 {% endhighlight %}
