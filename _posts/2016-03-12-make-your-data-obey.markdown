@@ -10,7 +10,7 @@ comments: true
 disqus: true
 ---
 
-Data is what programming is all about. Applications would be nothing without that beautiful i/o of data moving between modules, services, and data storage. But data is nothing if it's not consistant. One often ill-attended area of application development is data modelling and validation; most applications have a layer for addressing this, but a lot fall short of really implementing a solid solution.
+Data is what programming is all about. Applications would be nothing without that beautiful i/o of data moving between modules, services, and data storage. But data is nothing if it's not consistant.
 
 **[Obey](https://github.com/TechnologyAdvice/obey) was developed specifically to address, and provide solutions for, data modelling and validation for modern web applications developed in JavaScript.**
 
@@ -47,7 +47,7 @@ user.validate({
 })
 {% endhighlight %}
 
-Overall pretty simple stuff. We validate the model, then create the user (or catch the error). But what about that `id`? We probably want to have that generated automatically. Yes, most databases auto-generate unique id's, but play along; this is a perfect example.
+Overall pretty simple stuff. We validate the model, then create the user (or catch the error). But what about that `id`? We probably want to have that generated automatically.
 
 ## Creators
 
@@ -80,13 +80,14 @@ Obey wasn't just built for validation, but also to support coercion and modifica
 {% highlight javascript %}
 import obey from 'obey'
 import uuid from 'node-uuid'
-// Import the crypto module
-import crypto from 'crypto'
+// Import the argon2 module
+import argon2 from 'argon2'
 
 obey.creator('uuid', () => uuid.v4())
 
 // Add a modifier that returns md5 encrypted value
-obey.modifier('encrypt', val => crypto.createHash('md5').update(val).digest('hex'))
+const salt = new Buffer('somesalt')
+obey.modifier('encrypt', val => argon2.hash(val, salt))
 
 const user = obey.model({
     id: { type: 'uuid', creator: 'uuidCreator' required: true },
@@ -109,13 +110,14 @@ You want your datasource to go into (a potentially locking) `insert` state to do
 {% highlight javascript %}
 import obey from 'obey'
 import uuid from 'node-uuid'
-import crypto from 'crypto'
+import argon2 from 'argon2'
 // Here's our db reference again...
 import db from './db'
 
 obey.creator('uuid', () => uuid.v4())
 
-obey.modifier('encrypt', val => crypto.createHash('md5').update(val).digest('hex'))
+const salt = new Buffer('somesalt')
+obey.modifier('encrypt', val => argon2.hash(val, salt))
 
 // Add a type to ensure we have a valid, unique email
 obey.type('uniqueEmail', context => {
@@ -147,9 +149,9 @@ But wait, that custom type is asynchronous? Why yes it is. The creators and modi
 
 ## Embracing Asynchronicity
 
-It's simple to look at data modelling and validation as a synchronous thing, but it really shouldn't be, it limits the power of this important layer of application development.
+It's simple to look at data modelling and validation as a synchronous thing, but it really shouldn't be. It limits the power of this important layer of application development.
 
-With everything else in data i/o being asynchronous it's one are where asynchronous processing is not a _nice to have_, it's a **must have**.
+With everything else in data i/o being asynchronous it's one area where asynchronous processing is not a _nice to have_, it's a **must have**.
 
 Let's take a look at our whole build process now, abstracting the Obey modifier, creator and type into their own lib we'll call `obey-utils`.
 
