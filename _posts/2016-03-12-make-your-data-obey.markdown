@@ -59,7 +59,7 @@ import obey from 'obey'
 import uuid from 'node-uuid'
 
 // Add a creator that returns a v4 UUID if one isn't supplied
-obey.creator('uuidCreator', () => uuid.v4())
+obey.creator('uuidCreator', uuid.v4)
 
 const user = obey.model({
     // The id now specifies that the creator 'uuid' should be used if no value is present
@@ -83,7 +83,7 @@ import uuid from 'node-uuid'
 // Import the argon2 module
 import argon2 from 'argon2'
 
-obey.creator('uuid', () => uuid.v4())
+obey.creator('uuidCreator', uuid.v4)
 
 // Add a modifier that returns md5 encrypted value
 const salt = new Buffer('somesalt')
@@ -112,7 +112,7 @@ import argon2 from 'argon2'
 // Here's our db reference again...
 import db from './db'
 
-obey.creator('uuid', () => uuid.v4())
+obey.creator('uuidCreator', uuid.v4)
 
 const salt = new Buffer('somesalt')
 obey.modifier('encrypt', val => argon2.hash(val, salt))
