@@ -103,9 +103,7 @@ BUT, what about that `email`? Probably want to make sure it's unique...
 
 ## Types
 
-Having that `email` contain one that's already in the datasource would be bad news bears right? So here's the point where a lot of developers say "my database will reject it!". Good point, not so good execution though.
-
-You want your datasource to go into (a potentially locking) `insert` state to do your validation for you? Really? Why not do that all inside the validation? It is validating data after all. Luckily `types` are customizable, so let's make our own:
+Having that `email` contain one that's already in the datasource would be bad news bears right? Some databases do provide uniqueness integrity checking, but there are a lot that don't. Luckily, `types` are extensible with Obey, so we can add our own check:
 
 {% highlight javascript %}
 import obey from 'obey'
