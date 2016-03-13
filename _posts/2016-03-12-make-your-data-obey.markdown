@@ -141,7 +141,7 @@ const user = obey.model({
 
 Now when the `validate` method is run we do an asynchronous read on the datasource, check that the email 1) doesn't exist and 2) is a legit email address.
 
-What's best is **we do all of this at the data validation level**. Yes, we're still hitting the datasource (really no way around that), but we're using a less expensive process and all of our handling of an error condition is in the same place as the rest of the validation error handling.
+What's best is **we do all of this at the data validation level**. Yes, we're still hitting the datasource (really no way around that), but all of our handling of an error condition is in the same place as the rest of the validation error handling.
 
 The code above is also getting a bit unweildy and is probably better abstracted, but Obey is built for that; all of the modifiers, creators, and types can be added in an abstraction then called wherever you create a model.
 
