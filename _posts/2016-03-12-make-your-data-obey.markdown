@@ -185,3 +185,13 @@ By embracing asynchronicity everything runs through in the same style, using the
 [Obey](https://github.com/TechnologyAdvice/obey) was developed to support an area of development that often times doesn't get enough attention, or tackles validation by assuming a datasource will handle it for you.
 
 Our team wanted a way to centralize our data validation and modelling in one place, stop relying on after-the-fact error handling and injecting validation logic into places it shouldn't be, but more than anything we wrote it to be flexible and easy to work with.
+
+In addition to what is show above, Obey provides numerous other tools for modelling and validation:
+
+* Reusable, JSON-based schemas
+* Global validators such as `min`, `max`, `allow` and `default` which work with all types
+* Recursive types
+* Sub-type support for multiple formats
+* Individual rule definition
+* `strict` mode for enabling/disabling exact object matching
+* Highly extensible API
