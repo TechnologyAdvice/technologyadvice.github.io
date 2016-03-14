@@ -12,7 +12,7 @@ disqus: true
 
 Data is what programming is all about. Applications would be nothing without that beautiful i/o of data moving between modules, services, and data storage. But data is nothing if it's not consistent.
 
-> [Obey](https://github.com/TechnologyAdvice/obey) was developed specifically to address, and provide solutions for, data modelling and validation for modern web applications developed in JavaScript.**
+> [Obey](https://github.com/TechnologyAdvice/obey) was developed specifically to address, and provide solutions for, data modelling and validation for modern web applications developed in JavaScript.
 
 ## Diving In
 
