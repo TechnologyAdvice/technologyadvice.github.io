@@ -215,3 +215,9 @@ In addition to what is show above, Obey provides numerous other tools for modell
 * Individual rule definition
 * `strict` mode for enabling/disabling exact object matching
 * Highly extensible API
+
+### Your Feedback
+
+While we've been dogfooding Obey and working out the pain points _we_ saw in modelling and validation, we want to know what you see as issues or challenges commonly faced when working with data.
+
+What areas have you felt other, similar libraries have been good or bad at addressing, and do you see things missing from Obey that we can add?
