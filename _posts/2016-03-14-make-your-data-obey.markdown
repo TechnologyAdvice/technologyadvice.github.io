@@ -24,7 +24,7 @@ import obey from 'obey'
 const user = obey.model({
     id: { type: 'uuid', required: true },
     email: { type: 'email', required: true },
-    password: { type: 'string', require: true }
+    password: { type: 'string', required: true }
 })
 {% endhighlight %}
 
@@ -67,7 +67,7 @@ const user = obey.model({
     // used if no value is present
     id: { type: 'uuid', creator: 'uuidCreator' required: true },
     email: { type: 'email', required: true },
-    password: { type: 'string', require: true }
+    password: { type: 'string', required: true }
 })
 {% endhighlight %}
 
@@ -96,7 +96,7 @@ const user = obey.model({
     email: { type: 'email', required: true },
     // Password now specifies the modifier 'encrypt' should be used to
     // encrypt the password
-    password: { type: 'string', modifier: 'encrypt', require: true }
+    password: { type: 'string', modifier: 'encrypt', required: true }
 })
 {% endhighlight %}
 
@@ -134,7 +134,7 @@ const user = obey.model({
     id: { type: 'uuid', creator: 'uuidCreator' required: true },
     // Email is now set to type 'uniqueEmail'
     email: { type: 'uniqueEmail', required: true },
-    password: { type: 'string', modifier: 'encrypt', require: true }
+    password: { type: 'string', modifier: 'encrypt', required: true }
 })
 {% endhighlight %}
 
@@ -182,7 +182,7 @@ import './obey-utils'
 const user = obey.model({
     id: { type: 'uuid', creator: 'uuidCreator' required: true },
     email: { type: 'uniqueEmail', required: true },
-    password: { type: 'string', modifier: 'encrypt', require: true }
+    password: { type: 'string', modifier: 'encrypt', required: true }
 })
 
 // Validation
