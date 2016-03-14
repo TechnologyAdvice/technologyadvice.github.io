@@ -100,7 +100,7 @@ const user = obey.model({
 })
 {% endhighlight %}
 
-Now not only does our validation method create a UUID, now it also encrypts the password for us.
+Now not only does our validation method create a UUID, it also encrypts the password for us.
 
 But what about that `email` property? Probably want to make sure it's unique...
 
@@ -138,21 +138,40 @@ const user = obey.model({
 })
 {% endhighlight %}
 
-Now when the `validate` method is run we do a read on the datasource and check that the email doesn't already exist. Obey doesn't need to be returned a value or `true`, if the `context.fail` method is not called it will simply move forward.
+Now when the `validate` method is run we do a read on the datasource and check that the email doesn't already exist. Obey doesn't need to be returned a value or `true`, if the `context.fail` method is not called it will simply move forward, adding the error to a collection which is included with any other errors.
 
 What's best is **we do all of this at the data validation level**. Yes, we're still hitting the datasource (really no way around that), but all of our handling of an error condition is in the same place as the rest of the validation error handling.
 
-The code above is also getting a bit unweildy and is probably better abstracted, but Obey is built for that; all of the modifiers, creators, and types can be added in an abstraction then called wherever you create a model. This makes it easy to share types, modifiers, creators, and the like across multiple models.
+The code above is also getting a bit unweildy and is probably better abstracted, but Obey is built for that; all of the modifiers, creators, and types can be added in an abstraction then called wherever you create a model. This makes it easy to share types, modifiers, creators, and the like across multiple models. This can be done by simply moving the methods to a file, we'll call it `obey-utils.js`:
+
+{% highlight javascript %}
+import obey from 'obey'
+import uuid from 'node-uuid'
+import argon2 from 'argon2'
+import db from './db'
+
+obey.creator('uuidCreator', uuid.v4)
+
+const salt = new Buffer('somesalt')
+obey.modifier('encrypt', val => argon2.hash(val, salt))
+
+obey.type('uniqueEmail', context => {
+    return db.read({ email: context.val }).then(res => {
+        if (res.length !== 0) context.fail('Email must be unique')
+        // Note: you'd also want to check that the email is valid!
+    })
+})
+{% endhighlight %}
 
 But wait, that custom type is asynchronous? Why yes it is. The creators and modifiers can be as well...
 
 ## Embracing Asynchronicity
 
-It's simple to look at data modelling and validation as a synchronous thing; running through checks and moving on, but it should have more to it than just that. It limits the power of this integral layer of application development.
+It's simple to look at data modelling and validation as a synchronous thing; running through checks and moving on, but it should have more to it than just that. Addressing modelling and validation only on a synchronous level limits the power of this integral layer of application development.
 
-With everything else in data i/o being asynchronous it's one area where asynchronous processing is not a _nice to have_, it's a **must have**.
+With so much in data i/o being asynchronous, modelling is one area where asynchronous processing is not a _nice to have_, it's a **must have**.
 
-Let's take a look at our whole build process now, abstracting the Obey modifier, creator and type into their own lib we'll call `obey-utils`.
+Let's take a look at our whole model now, with the `obey-utils` abstracted into a separate file:
 
 {% highlight javascript %}
 import obey from 'obey'
@@ -183,9 +202,9 @@ By embracing asynchronicity everything runs through in the same fashion, using t
 
 ## Summary
 
-[Obey](https://github.com/TechnologyAdvice/obey) was developed to support an area of development that often times doesn't get enough attention, or tackles validation by assuming a datasource will handle it for you.
+[Obey](https://github.com/TechnologyAdvice/obey) was developed to support an area of development that oftentimes doesn't get enough attention, or tackles validation by assuming a datasource will handle it for you.
 
-Our team wanted a way to centralize our data validation and modelling in one place, stop relying on after-the-fact error handling and injecting validation logic into places it shouldn't be, but more than anything we wrote it to be flexible and easy to work with.
+We wrote [Obey](https://github.com/TechnologyAdvice/obey) to centralize our data validation and modelling in one place, stop relying on after-the-fact error handling and injecting validation logic into places it shouldn't be, but more than anything we wrote it to be flexible and easy to work with.
 
 In addition to what is show above, Obey provides numerous other tools for modelling and validation:
 
