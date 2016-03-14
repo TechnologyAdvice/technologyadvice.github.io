@@ -126,9 +126,8 @@ obey.type('uniqueEmail', context => {
     return db.read({ email: context.val }).then(res => {
         // Fail if it already exists
         if (res.length !== 0) context.fail('Email must be unique')
-        // Note: you would also want to add a check here to
-        // ensure a valid email address!
-    }
+        // Note: you'd also want to check that the email is valid!
+    })
 })
 
 const user = obey.model({
@@ -139,7 +138,7 @@ const user = obey.model({
 })
 {% endhighlight %}
 
-Now when the `validate` method is run we do a read on the datasource, check that the email 1) doesn't exist and 2) is a valid email address.
+Now when the `validate` method is run we do a read on the datasource and check that the email doesn't already exist. Obey doesn't need to be returned a value or `true`, if the `context.fail` method is not called it will simply move forward.
 
 What's best is **we do all of this at the data validation level**. Yes, we're still hitting the datasource (really no way around that), but all of our handling of an error condition is in the same place as the rest of the validation error handling.
 
