@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Make Your Data Obey"
-date: 2016-03-12 10:00:00
+date: 2016-03-14 06:00:00
 categories: obey data validation modelling
 author: kent.safranski
 cover: /assets/images/covers/obey.jpg
