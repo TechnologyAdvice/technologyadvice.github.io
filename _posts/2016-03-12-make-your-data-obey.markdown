@@ -5,18 +5,18 @@ date: 2016-03-12 10:00:00
 categories: obey data validation modelling
 author: kent.safranski
 cover: /assets/images/covers/obey.jpg
-description: Data is what programming is all about. Applications would be nothing without that beautiful i/o of data moving between modules, services, and data storage. But data is nothing if it's not consistent.
+description: Consistent data is key to any successful application. Find out how the Obey library can help you model and validate your data more efficiently.
 comments: true
 disqus: true
 ---
 
 Data is what programming is all about. Applications would be nothing without that beautiful i/o of data moving between modules, services, and data storage. But data is nothing if it's not consistent.
 
-**[Obey](https://github.com/TechnologyAdvice/obey) was developed specifically to address, and provide solutions for, data modelling and validation for modern web applications developed in JavaScript.**
+> [Obey](https://github.com/TechnologyAdvice/obey) was developed specifically to address, and provide solutions for, data modelling and validation for modern web applications developed in JavaScript.**
 
 ## Diving In
 
-Let's start with a simple example; validating a user account. There are some core data points we want to ensure, using Obey's `model` method to create a model object is how we start:
+Let's start with a simple example: validating a user account. There are some core data points we want to ensure, using Obey's `model` method to create a model object is how we start:
 
 {% highlight javascript %}
 import obey from 'obey'
@@ -77,7 +77,7 @@ But that `password` is not cool; we don't want to save that in plain-text...
 
 ## Modifiers
 
-Obey wasn't just built for validation, but also to support coercion and modification. Modifiers allow for doing this in a clean, simple method. Let's revisit the model again, using the `modifier` method to create one:
+Obey wasn't just built for validation, but also to support coercion and modification. Modifiers allow for doing this in a clean, simple way. Let's revisit the model again, using the `modifier` method to create one:
 
 {% highlight javascript %}
 import obey from 'obey'
