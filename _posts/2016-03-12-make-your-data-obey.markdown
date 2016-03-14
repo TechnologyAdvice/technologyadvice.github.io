@@ -100,7 +100,7 @@ const user = obey.model({
 })
 {% endhighlight %}
 
-Now not only does our validation method create a UUID, it also encrypts the password for us. We've changed the model to accomplish this, but we validate exactly the same, Obey handles this all automatically based on the modelling we defined.
+Now not only does our validation method create a UUID, now it also encrypts the password for us.
 
 But what about that `email` property? Probably want to make sure it's unique...
 
