@@ -126,9 +126,8 @@ obey.type('uniqueEmail', context => {
     return db.read({ email: context.val }).then(res => {
         // Fail if it already exists
         if (res.length !== 0) context.fail('Email must be unique')
-        // Fail if it's not a legit email
-        const emailRegEx = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
-        if (!context.value.match(emailRegEx)) context.fail('Must be a valid email')
+        // Note: you would also want to add a check here to
+        // ensure a valid email address!
     }
 })
 
