@@ -84,7 +84,7 @@ Notice how we've taken a simple reducer and added a `meta` property called `anal
 
 Now that you have an arsenal of analytics tooling integrations at your fingertips you can ask your stakeholders what they want to measure, instead of asking them how they want to go about measuring it.
 
-I've used Segment in the past to set-up and scale several single-page apps tracked by Google Analytics, track application errors with Sentry and watch users navigate a site to discover UX issues. Currently I'm working on an AWS client-side monitoring solution leveraging [Lambda] and webhooks. And I get geeked every time someone shows me some new, so please don't hesitate to gush about your favorite analytics tools in the comments section below.
+I've used Segment in the past to set-up and scale several single-page apps tracked by Google Analytics, track application errors with Sentry and watch users navigate a site to discover UX issues. Currently I'm working on an AWS client-side monitoring solution leveraging [Lambda] and webhooks. And I get geeked every time someone shows me something new, so please don't hesitate to gush about your favorite analytics tools in the comments section below.
 
 [Keen.io]: https://keen.io/
 [Lambda]: https://aws.amazon.com/lambda/
