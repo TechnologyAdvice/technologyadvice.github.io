@@ -40,7 +40,7 @@ The middleware installation instructions currently assume you're building a fat 
 
 ## Connecting with Segment
 
-If you've already signed up with an account and **create a _Project_ for your app** in Segment all you need to do is `_.plop` the `WRITE_KEY` provided into your app while initializing, and let the Redux middleware do the rest. The key is safe to share, so you don't need to worry about [locking it up](http://technologyadvice.github.io/lock-up-your-customer-accounts-give-away-the-key/).
+If you've already signed up with an account and **created a _Project_ for your app** in Segment all you need to do is `_.plop` the `WRITE_KEY` provided into your app while initializing, and let the Redux middleware do the rest. The key is safe to share, so you don't need to worry about [locking it up](http://technologyadvice.github.io/lock-up-your-customer-accounts-give-away-the-key/).
 
 ## Sending an event
 
