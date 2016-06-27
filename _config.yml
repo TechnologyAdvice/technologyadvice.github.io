@@ -72,7 +72,6 @@ authors:
     name: Josh Habdas
     display_name: Josh
     email: josh.habdas@technologyadvice.com
+    former: true
     bio: |
-      Josh is a former Senior Software Engineer at TA who focused on Web Platform work
-      and also contributed to our open source tools. He's passionate about expressive
-      code and minimalism.
+      Josh Habdas was formerly a Senior Front End Developer for TA.
