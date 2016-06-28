@@ -40,20 +40,8 @@ authors:
     name: Levi Thomason
     email: levi.thomason@technologyadvice.com
     bio: |
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-      do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-      nisi ut aliquip ex ea commodo consequat.
-  josh.habdas:
-    pic: josh.habdas.jpg
-    name: Josh Habdas
-    display_name: Josh
-    email: josh.habdas@technologyadvice.com
-    bio: |
-      Josh is a Senior Software Engineer at TA focused on Web Platform work
-      and helping build our open source tools. He's passionate about expressive
-      code and minimalism. You can read more of Josh's tech articles on his
-      personal tech blog at http://habd.as.
+      Levi is a Senior Software Engineer at TA who really wants to blog but is 
+      extremely busy. We know he will soon.
   peter.svetlichny:
     pic: peter.svetlichny.jpg
     name: Peter Svetlichny
@@ -79,3 +67,11 @@ authors:
       David is a Senior Software Engineer at TA focused on frontend work. He has
       a love for functional programming, ReactJS, and web application performance
       and optimization.
+  josh.habdas:
+    pic: josh.habdas.jpg
+    name: Josh Habdas
+    display_name: Josh
+    email: josh.habdas@technologyadvice.com
+    former: true
+    bio: |
+      Josh Habdas was formerly a Senior Front End Developer for TA.

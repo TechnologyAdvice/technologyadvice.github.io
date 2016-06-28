@@ -10,6 +10,7 @@ TADevelops is a blog developed by the engineering team behind [TechnologyAdvice]
 
 <ul class="about-profiles">
 {% for author in site.authors %}
+  {% if author[1].former == null %}
   <li>
     <div>
     <span class="image" style="background-image: url('/assets/images/profiles/{{ author[1].pic }}');"></span>
@@ -32,6 +33,7 @@ TADevelops is a blog developed by the engineering team behind [TechnologyAdvice]
     
     </div>
   </li>
+  {% endif %}
 {% endfor %}
 </ul>
 
