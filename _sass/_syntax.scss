@@ -1,6 +1,10 @@
 // https://github.com/dwayne/sass-pygments/blob/master/styles/monokai.scss
 // for a full listing of available themes check out the repo
 
+pre, code {
+  white-space: pre;
+}
+
 .highlight {
   .hll {
     background-color: #ffffcc; }

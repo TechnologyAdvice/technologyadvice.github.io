@@ -60,7 +60,7 @@ Now when we define a model or rule we can use the `mailgunEmail` type and valida
 
 ### Expanding the Concept
 
-The above is a fairly straightforward example. However, Mailgun isn't your only option for email validation, and there are a myriad great validation APIs for other data types like phone numbers and addresses. The code could easily be modified to perform all sorts of asynchronous validation.
+The above is a fairly straightforward example. However, Mailgun isn't your only option for email validation, and there are a myriad of great validation APIs for other data types like phone numbers and addresses. The code could easily be modified to perform all sorts of asynchronous validation.
 
 ### Get the Plugin
 
