@@ -4,7 +4,7 @@ title: "Better Email Validation with Obey and Mailgun"
 date: 2016-07-07 10:00:00
 categories: asynchronous validation nodejs
 author: kent.safranski
-cover: /assets/images/covers/books.jpg
+cover: /assets/images/covers/mail-sorting.jpg
 description: Email validation seems simple, but you really should be using a service to accurately validate addresses. Here's how Obey and Mailgun can work together to reliably validate emails.
 comments: true
 ---
