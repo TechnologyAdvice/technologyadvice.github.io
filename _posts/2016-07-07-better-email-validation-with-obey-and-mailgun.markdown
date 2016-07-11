@@ -11,13 +11,15 @@ comments: true
 
 Validating email is simple, right? Just throw a regex at it? Well it's not as simple as you might think. The RFC Spec (Page 27 of [this monster](https://www.ietf.org/rfc/rfc0822.txt), if you're interested) is clear as mud on what constitutes a valid email.
 
-Basically, with all the special characters and conditions of what can go before and after the `@`, a regex to validate emails accurately would be incomprehensable at best. 
+Basically, with all the special characters and conditions of what can go before and after the `@`, a regex to validate emails accurately would be incomprehensable at best.
 
 _If you'd like to find out more about why email validation sucks check out [this article](http://www.kbedell.com/2011/03/16/how-to-validate-an-email-address-using-regular-expressions/), for now let's move along._
 
+Surely this is something other people have dealt with though, what about a library? Well, they [do exist](https://www.npmjs.com/package/isemail), however, we want to _really_ validate an email. This is most likely either a core communication or authentication property. Libraries can do more than a regex, but they lack more advanced checks against actual resources. Testing for things like not only the validity of a domain, but does it even exist.
+
 ### Using a Service for Validation
 
-We want to know if an email is valid, but a regex won't work, so our best option is a service. [Mailgun's API for email validation](https://documentation.mailgun.com/api-email-validation.html#email-validation) is a wonderful option. It will check a number of things for us:
+We want to know if an email is valid, but a regex's are tricky and libraries are limited. This is where validation services come in handy. [Mailgun's API for email validation](https://documentation.mailgun.com/api-email-validation.html#email-validation) is a wonderful option. It will check a number of things for us:
 
 * General syntax based on RFC
 * DNS validation
@@ -30,7 +32,7 @@ So, you may be asking yourself what this looks like. Typically validation is a s
 
 We start with a simple type definition, using Obey and [request-promise](https://www.npmjs.com/package/request-promise) we'll hit the API and handle the results:
 
-{% highlight javascript %}
+```javascript
 const obey = require('obey')
 const rp = require('request-promise')
 
@@ -46,22 +48,18 @@ obey.type('mailgunEmail', (context) => {
                 context.fail(context.value + ' is an invalid email')
             }
         })
-        .catch(function(err) {
-            // Handle API errors
-            context.fail(`Error validating email (${context.value}): ${err.message}`)
-        })
 })
-{% endhighlight %}
+```
 
 That's it. Now when we define a model or rule we can use the `mailgunEmail` type and validation against the Mailgun API will either pass (no action) or fail (call to `context.fail` resulting in a `ValidationError` throw).
 
 ### Expanding the Concept
 
-The above is a fairly straight-forward example, however, Mailgun isn't your only option for email validation, and beyond that there are API's for all sorts of validation; phone, address, and a myriad of others. The code could easily be modified to perform all sorts of asyncronous validation.
+The above is a fairly straight-forward example. However, Mailgun isn't your only option for email validation, and there are a myriad great validation APIs for other data types like phone numbers and addresses. The code could easily be modified to perform all sorts of asynchronous validation.
 
 ### Get the Plugin
 
-If you're just interested in Mailgun we have a [`obey-type-email-mailgun`](https://github.com/TechnologyAdvice/obey-type-email-mailgun) plugin all ready for install and use.
+If you're just interested in Mailgun we have an [`obey-type-email-mailgun`](https://github.com/TechnologyAdvice/obey-type-email-mailgun) plugin all ready for install and use.
 
 
 
