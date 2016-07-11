@@ -42,7 +42,7 @@ const mailgunPublicKey = 'XXXXX-YYYY-ZZZZZZZ'
 obey.type('mailgunEmail', (context) => {
     // Hit the API
     return rp({ 
-        uri: `https://api:${mailgunPublicKey}'@api.mailgun.net/v3/address/validate`,
+        uri: `https://api:${mailgunPublicKey}@api.mailgun.net/v3/address/validate`,
         qs: {
             address: context.value
         },
