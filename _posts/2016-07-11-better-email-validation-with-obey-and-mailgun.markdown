@@ -36,13 +36,13 @@ We start with a simple type definition. Using Obey and [request-promise](https:/
 const obey = require('obey')
 const rp = require('request-promise')
 
-// Our API key
-const mailgunPublicKey = 'XXXXX-YYYY-ZZZZZZZ'
+// Our API key (use the public key for validation)
+const mailgunKey = 'XXXXX-YYYY-ZZZZZZZ'
 
 obey.type('mailgunEmail', (context) => {
     // Hit the API
     return rp({ 
-        uri: `https://api:${mailgunPublicKey}@api.mailgun.net/v3/address/validate`,
+        uri: `https://api:${mailgunKey}@api.mailgun.net/v3/address/validate`,
         qs: {
             address: context.value
         },
