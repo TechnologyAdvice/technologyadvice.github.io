@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Better Email Validation with Obey and Mailgun"
-date: 2016-07-07 10:00:00
+date: 2016-07-11 10:00:00
 categories: asynchronous validation nodejs
 author: kent.safranski
 cover: /assets/images/covers/mail-sorting.jpg
