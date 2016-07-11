@@ -49,7 +49,7 @@ obey.type('mailgunEmail', (context) => {
         json: true 
     }).then((result) => {
         // Handle validation errors
-        if (result.is_valid) {
+        if (!result.is_valid) {
             context.fail(context.value + ' is an invalid email')
         }
     })
