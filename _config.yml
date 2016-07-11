@@ -3,7 +3,6 @@ description: TechnologyAdvice Developer Blog
 meta_description: "Blog about JavaScript, Node, Docker, React, and much more!"
 
 markdown: kramdown
-highlighter: pygments
 logo: false
 paginate: 5
 baseurl: /
