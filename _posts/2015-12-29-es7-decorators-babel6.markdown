@@ -28,7 +28,7 @@ Then update your `.babelrc` file to add the legacy decorator support plug-in lik
 
 If you're using Webpack as a transpiler and module bundler, it's possible to target the plug-in at only desired portions of the codebase by passing the name of the `plugin` to the `query` of a loader, as shown in the example here:
 
-{% highlight javascript %}
+```javascript
 module: {
   loaders: [
     {
@@ -47,13 +47,13 @@ module: {
     }
   ]
 }
-{% endhighlight %}
+```
 
 ## Decorator usage
 
 Once added, decorators like [`@autobind`](https://github.com/andreypopp/autobind-decorator) can be used to mitigate the need to override ES6 class constructors, turning this:
 
-{% highlight javascript %}
+```javascript
 class MyClass extends Component {
   constructor(props, context) {
     this.onChange = this.onChange.bind(this)
@@ -65,11 +65,11 @@ class MyClass extends Component {
   onChange() {}
   handleSubmit() {}
 }
-{% endhighlight %}
+```
 
 Into this:
 
-{% highlight javascript %}
+```javascript
 class MyClass extends Component {
   state = {isLoading: true}
   
@@ -79,7 +79,7 @@ class MyClass extends Component {
   @autobind
   handleSubmit() {}
 }
-{% endhighlight %}
+```
 
 Note that Decorators and the `@` operator are an ES7 proposal and are subject to change before the specification is finalized.
 

@@ -48,7 +48,7 @@ Once you've installed the `redux-segment` middleware and connected with Segment 
 
 Here's an example _Identify_ event we use to track user login events on some of our React apps here at TA:
 
-{% highlight javascript %}
+```javascript
 import { EventTypes } from 'redux-segment'
 
 export const loginSuccess = (token, user) => ({
@@ -76,7 +76,7 @@ export const loginSuccess = (token, user) => ({
     },
   },
 })
-{% endhighlight %}
+```
 
 Notice how we've taken a simple reducer and added a `meta` property called `analytics`, along with an event type and payload. That's all there is to it! See the middleware [Usage section](https://github.com/rangle/redux-segment#usage) for different event types, supported routers and additional documentation.
 

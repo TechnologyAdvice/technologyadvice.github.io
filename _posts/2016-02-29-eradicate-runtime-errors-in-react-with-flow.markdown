@@ -34,7 +34,7 @@ Unlike what some [recent rumors](https://www.reddit.com/r/reactjs/comments/44yqg
 
 Flow solves all of these concerns and is an invaluable addition to the typical workflow, perhaps as a [pre-commit hook](http://technologyadvice.github.io/the-power-of-the-precommit/) or as part of your CI process. But enough with the words already, let's write some code. Everyone is rightfully sick of [TodoMVC](http://todomvc.com/), so we'll change it up by doing some TodoMVC _with Flow_.
 
-{% highlight javascript %}
+```javascript
 /* @flow */
 import React from 'react'
 import autobind from 'autobind-decorator'
@@ -67,14 +67,14 @@ class TodoList extends React.Component {
     )
   }
 }
-{% endhighlight %}
+```
 
 * **Note 0.14.0**: As of [Flow v0.22.0](https://github.com/facebook/flow/releases/tag/v0.22.0), `ReactElement` and its kin are no longer implicitly available on the global scope. If you are, for example, [creating a declaration](http://flowtype.org/docs/declarations.html#_), you will have to import React and reference the types off of the `React` namespace, e.g. `ReactElement` -> `React.Element`.
 * **Note 15.0.0** `void` means "no return value" aka `undefined`.
 
 Ok, back to it. So this is pretty cool, we've added some fairly basic type annotations to our `<TodoList />` component, where we defined the property `todos` as an array of objects and annotated the component's two methods. I'm not going to cover the fact that Flow will type check these properties, as that's Flow's fundamental offering, so let's continue by taking a look at `<TodoListItem />`:
 
-{% highlight javascript %}
+```javascript
 /* @flow */
 import React from 'react'
 
@@ -94,11 +94,11 @@ class TodoListItem extends React.Component {
     )
   }
 }
-{% endhighlight %}
+```
 
 Not bad, our type of `todo` (`Object`) fits right in with what `<TodoList />` expects for `todos` (an array of `Objects`), but we can take this a step further. As many of you will recognize, this looks very similar to `PropTypes.shape`:
 
-{% highlight javascript %}
+```javascript
 // ...
 type Props = {
   todo: {
@@ -109,11 +109,11 @@ type Props = {
   onComplete: Function,
 }
 // ...
-{% endhighlight %}
+```
 
 We've now defined the shape of a `todo` inline, however, we're not done yet. We can improve this by creating (and exporting!) a reusable [Type Alias](http://flowtype.org/docs/type-aliases.html#_):
 
-{% highlight javascript %}
+```javascript
 // ...
 export type Todo = {
   id: string,
@@ -126,11 +126,11 @@ type Props = {
   onComplete: Function,
 }
 // ...
-{% endhighlight %}
+```
 
 This type alias can then be imported from other components or even made into an app-wide declaration if you find yourself using it often enough. So, how does Flow help us? Well, let's tweak our `<TodoListItem />`'s render method to display a bit more information:
 
-{% highlight javascript %}
+```javascript
 // Our updated Todo:
 export type Todo = {
   id: string,
@@ -156,7 +156,7 @@ render() {
     </div>
   )
 }
-{% endhighlight %}
+```
 
 If we run `flow check` on this, we get an error:
 
@@ -168,7 +168,7 @@ Flow recognized that `assignedUser` might not exist and correctly fails the anal
 
 Here's how a fixed version of this component might look:
 
-{% highlight javascript %}
+```javascript
 // ...
 class TodoListItem extends React.Component {
   props: Props;
@@ -193,13 +193,13 @@ class TodoListItem extends React.Component {
     )
   }
 }
-{% endhighlight %}
+```
 
 ### Function Properties
 
 Now let's say you are, rightfully, a fan of the React ESLint rule [`jsx-no-bind`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md). In this case you will probably convert your `<TodoList />` component to look something more like this:
 
-{% highlight javascript %}
+```javascript
 // ...
 import type { Todo } from './TodoListItem'
 
@@ -229,11 +229,11 @@ class TodoList extends React.Component {
     )
   }
 }
-{% endhighlight %}
+```
 
 Notice that we are no longer creating a function with each iteration of `this.props.todos`. Whether or not we do this with `.bind` or an arrow function is beside the point; the fact is, we are now delegating this responsibility to `<TodoListItem />`. Let's dive in and see what that the modified component would look like (removing some demo code for succinctness):
 
-{% highlight javascript %}
+```javascript
 // ...
 type Props = {
   todo: Todo,
@@ -259,13 +259,13 @@ class TodoListItem extends React.Component {
     )
   }
 }
-{% endhighlight %}
+```
 
 Looks great, except there's a bug, which is... not so great. The `<TodoList />` component's `_handleCompleteTodo` method is still expecting an argument `id` of type `string`, not the entire todo object. What we have right now is still fairly equivalent to what is possible with regular `PropTypes`, meaning `Function` does not say anything about its signature or return type. Luckily, we can go a step further with Flow.
 
 Since we know exactly how our component plans to call `onComplete`, we can explicitly define that signature in the `Props` type definition, which will require any implementers to abide by that signature. Check it out:
 
-{% highlight javascript %}
+```javascript
 type Props = {
   todo: Todo,
   onComplete: Function,
@@ -277,7 +277,7 @@ type Props = {
   todo: Todo,
   onComplete: (todo: Todo) => any,
 }
-{% endhighlight %}
+```
 
 At this point, we've defined the property `onComplete` to be a function that takes a `Todo` as its first and only argument. We don't actually care what that function returns, it's simply a callback, and those guys are super forgettable, so we specify `any` as the return type. With this in place, let's run `flow check` and see what we get:
 
@@ -295,25 +295,25 @@ Our most recent applications are built on top of the popular [Redux](https://git
 
 One easy place to start adding Flow type annotations to is your action creators. If you're familiar with [Flux Standard Action](https://github.com/acdlite/flux-standard-action), you could create a global declaration for this interface:
 
-{% highlight javascript %}
+```javascript
 type Action = {
   type: string,
   payload?: any,
   error?: boolean,
   meta?: any,
 }
-{% endhighlight %}
+```
 
 Granted, FSA is actually fairly weak in its type constraints, so you could enforce this more strictly as it suits you and your team. Still, this helps when creating your Flux modules:
 
-{% highlight javascript %}
+```javascript
 export const completeTodo = (id: string): Action => ({
   type: TODO_COMPLETE, // constant declared above
   payload: {
     id,
   },
 })
-{% endhighlight %}
+```
 
 If you were to return an object that didn't adhere to the `Action` type Flow would learn about it, hunt you down, and <s>kill you</s> fail your CI build.
 
@@ -323,7 +323,7 @@ The obvious benefit here is that we can create a type alias for each reducer's s
 
 Say we have a reducer responsible for some search state, perhaps a form with a handful of fields, nothing crazy. When the filters are submitted (in this example), we update the store to cache that state for returning visitors to provide some decent UX. This is super high-level, so please forgive me for not going through it in its entirety.
 
-{% highlight javascript %}
+```javascript
 // your filter state shape (presumably in a redux module)
 export type MySearchFilterState = {
   selectedUserIds: Array<string>,
@@ -365,7 +365,7 @@ class MyFormComponent extends React.Component {
   }
   // ...
 }
-{% endhighlight %}
+```
 
 The amazing part about this setup is that if `<MyFormComponent />` decides to not abide by the shape of the filters (as it fails to do above), Flow will catch it without ever having to run the application. It will not only validate the shape of those filters, but will follow them through their entire lifecycle, far outside of the reach of component properties. Whether the error is an additional/malformed property, a missing required property, or an incorrect type, Flow has you covered. If you ever change the shape of your state, Flow will help you confirm that the rest of the application continues humming along.
 

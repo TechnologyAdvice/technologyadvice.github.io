@@ -32,19 +32,19 @@ npm install precommit-hook --save-dev
 
 In your `package.json` either use the tasks you have defined, or define some to run:
 
-{% highlight javascript %}
+```javascript
 "scripts": {
   "lint": "eslint /src --fix",
   "test": "mocha /src --recursive"
 }
-{% endhighlight %}
+```
 
 #### Define the Precommit
 
 Also in your `package.json`, define the following to specify the tasks to run:
 
-{% highlight javascript %}
+```javascript
 "pre-commit": [ "lint", "test" ]
-{% endhighlight %}
+```
 
 That's it! Now when anyone commits on the repo your precommit tasks will run and let them know if everything's good or if a test or lint check is failing!
