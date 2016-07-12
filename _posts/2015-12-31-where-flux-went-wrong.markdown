@@ -21,7 +21,7 @@ The internals are complicated, but the effect is simple: no more stressing about
 
 Here's what just one small piece of this (the component) might look like:
 
-{% highlight javascript %}
+```javascript
 import React from 'react'
 import autobind from 'autobind-decorator'
 import TodoStore from 'stores/todo'
@@ -67,7 +67,7 @@ class TodoList extends React.Component {
     )
   }
 }
-{% endhighlight %}
+```
 
 As you can see, the todos represented in the view are not managed by the component but instead live in a store. We've managed to create a single source of truth for the todos by way of the TodoStore. Some state has been eliminated from our component, but it's not perfect.
 
@@ -94,7 +94,7 @@ We need a new approach.
 
 So what can be done resolve this predicament? Enter [Redux](https://github.com/rackt/redux), a Flux paradigm that is better for all the ways that it eschews Flux's original implementation. There are many things that make Redux great, but the focus for this post is something specific that I find many Redux posts gloss over: [react-redux](https://github.com/rackt/react-redux)'s `connect` decorator. What [Dan Abramov](https://twitter.com/dan_abramov), Redux’s creator and our lord and savior, figured out was that higher-order components could be used to abstract away the store subscription in a way that not only reduced boilerplate, but totes flipped the script on us and altered how application state enters a component. Let’s take a look:
 
-{% highlight javascript %}
+```javascript
 import React from 'react'
 import { connect } from 'react-redux'
 import { actions as TodoActions } from 'modules/todo'
@@ -128,7 +128,7 @@ export class TodoList extends React.Component {
 export default connect(state => ({
   todos: state.todos
 })(TodoList)
-{% endhighlight %}
+```
 
 Now, since the Redux [documentation](http://rackt.org/redux/index.html) is awesome I’m not going to spend time covering this in great detail, but we’ll discuss the most important point: where is the `<TodoList />` component receiving the todos from? And I don’t mean that they live in a store, but rather that they are entering the component as **props**.
 

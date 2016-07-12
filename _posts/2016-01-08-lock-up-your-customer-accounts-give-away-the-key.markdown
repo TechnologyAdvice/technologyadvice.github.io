@@ -71,13 +71,13 @@ Create the master key, giving it an alias and defining who is and isn't allowed 
 
 Now to create the AES key, you'll want the [AWS CLI tool], so make sure that's installed and you've configured your AWS keys locally. Then just fire off this command (replace `YOUR_KEY_ALIAS`):
 
-{% highlight bash %}
+```
 aws kms generate-data-key-without-plaintext \
   --key-id alias/YOUR_KEY_ALIAS \
   --key-spec AES_256 \
   --output text \
   --query CiphertextBlob
-{% endhighlight %}
+```
 
 Now you have your brand new AES key, encrypted via KMS, safe to share over insecure media.
 
@@ -85,7 +85,7 @@ Now you have your brand new AES key, encrypted via KMS, safe to share over insec
 
 Save the following blob in a file named `cryptex.json`, inserting your encrypted key from the last step in place of `KEY_HERE`, and your AWS region in place of `us-east-1` if that's not what you're using:
 
-{% highlight json %}
+```javascript
 {
   "default": {
     "keySource": "kms",
@@ -97,7 +97,7 @@ Save the following blob in a file named `cryptex.json`, inserting your encrypted
     }
   }
 }
-{% endhighlight %}
+```
 
 Note that `default` is used if no other environment is specified. You can add other environments to this file (name them `production`, `prod`, `test`, whatever you like!) and give them similar config.
 
@@ -105,9 +105,9 @@ Note that `default` is used if no other environment is specified. You can add ot
 
 If you haven't already, install [Node.js] and use its package manager to install the Cryptex CLI tool:
 
-{% highlight bash %}
+```
 npm install -g cryptex
-{% endhighlight %}
+```
 
 Now, from the same folder as your `cryptex.json` file, encrypt any of your secrets:
  
@@ -118,7 +118,7 @@ cryptex encrypt SomeSecretPassword
 
 Any encrypted secrets you'd like to keep, just throw them in your `cryptex.json` with a friendly name:
 
-{% highlight json %}
+```javascript
 {
   "default": {
     "keySource": "kms",
@@ -131,7 +131,7 @@ Any encrypted secrets you'd like to keep, just throw them in your `cryptex.json`
     }
   }
 }
-{% endhighlight %}
+```
 
 Repeat for any secrets you need to store, for each environment you have set up. Just pass `-e environment-name-here` to the `cryptex` command to switch environments.
 
@@ -141,10 +141,10 @@ Repeat for any secrets you need to store, for each environment you have set up. 
 
 Once your `cryptex.json` has some named secrets in it, decrypting them is as simple as:
 
-{% highlight bash %}
+```
 cryptex decrypt mysqlpass
 # Output: SomeSecretPassword
-{% endhighlight %}
+```
 
 As with encrypting, pass `-e environment-name-here` to switch out of the default environment.
 
@@ -154,23 +154,23 @@ This command is now all you need to integrate encrypted secrets into any app!
 
 For users of Node, the Cryptex module can be installed into a project with:
 
-{% highlight bash %}
+```
 npm install --save cryptex
-{% endhighlight %}
+```
 
 And you can get your secrets programmatically like this, using the environment in the `NODE_ENV` environment variable, or `default` if that's not found:
 
-{% highlight javascript %}
+```javascript
 var cryptex = require('cryptex');
 
 cryptex.getSecret('mysqlpass').then(function(password) {
   // password contains the decrypted secret
 })
-{% endhighlight %}
+```
 
 Is your existing app not set up to handle an asynchronous call before the password is needed? No problem: Use a loader.  Add a JS file to your app that looks something like this:
 
-{% highlight javascript %}
+```javascript
 var cryptex = require('cryptex');
 
 cryptex.getSecrets([
@@ -185,7 +185,7 @@ cryptex.getSecrets([
 }).catch(function(err) {
   console.log('Failed getting secrets', err.stack);
 });
-{% endhighlight %}
+```
 
 Just change `my-app.js` to the original entry point to your application, and now you're guaranteed to have all your passwords saved in environment variables the moment your app starts up.
  

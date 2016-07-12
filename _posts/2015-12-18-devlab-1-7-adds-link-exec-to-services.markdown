@@ -19,7 +19,7 @@ The new `link` config allows you to link multiple services. This is extremely po
 
 In the `services` section of your `/devlab.yml` file this looks like:
 
-{% highlight yaml %}
+```yaml
 services:
   - someDatabase:
       name: foo
@@ -29,7 +29,7 @@ services:
       persist: false
       link:
         - foo
-{% endhighlight %}
+```
 
 Note the `link` in `someApplication` (named `bar`) references the earlier created `someDatabase` via it's name (`foo`). It's that simple. When `someApplication` loads up it will have `someDatabase` available.
 
@@ -39,7 +39,7 @@ Keep in mind the loading of services is done synchronously so you need to have t
 
 As of version 1.6.0 DevLab supports an `exec` config for any of the services. This is similar in format to the `tasks` defined at the end of your `/devlab.yml` except that this will be called immediately after the service container is started.
 
-{% highlight yaml %}
+```yaml
 services:
   - mongo:3.0:
       name: mongodb
@@ -50,7 +50,7 @@ services:
       persist: false
       exec: |
         echo "Some task"
-{% endhighlight %}
+```
 
 In the above snippet the `exec` task would simply run `echo "Some task"` after the container for Mongo successfully started.
 
