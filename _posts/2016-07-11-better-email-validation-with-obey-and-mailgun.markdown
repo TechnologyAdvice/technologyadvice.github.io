@@ -7,6 +7,7 @@ author: kent.safranski
 cover: /assets/images/covers/mail-sorting.jpg
 description: Email validation seems simple, but you really should be using a service to accurately validate addresses. Here's how Obey and Mailgun can work together to reliably validate emails.
 comments: true
+disqus: true
 ---
 
 Validating email is simple, right? Just throw a regex at it? Well it's not as simple as you might think. The RFC Spec (Page 27 of [this monster](https://www.ietf.org/rfc/rfc0822.txt), if you're interested) is clear as mud on what constitutes a valid email.
