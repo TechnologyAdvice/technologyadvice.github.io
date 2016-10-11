@@ -7,7 +7,7 @@ author: peter.svetlichny
 cover: /assets/images/covers/bungee.jpg
 ---
 
-It's a quiet Saturday, it's wet out, and I don't feel like doing much, so I open up Netflix. We all know how that typically goes, but today I *actually know* what I want to watch—Mad Max: Fury Road. Part of me already knows it's not available to stream, but I click on the search bar anyway, and start typing it in—`m`. Immediately suggestions starting with the letter 'm' fill the page (including actors' names), which become slightly more focused with each new letter. I know I would never watch many of them, but others, eh, maybe. And it's all thanks to the data from my personal viewing history being put to work behind the scenes to influence the results.
+It's a quiet Saturday, it's wet out, and I don't feel like doing much, so I open up Netflix. We all know how that typically goes, but today I *actually know* what I want to watch—Mad Max: Fury Road. Part of me already knows it's not available to stream, but I start typing it into the search bar anyway—`m`. Immediately suggestions starting with the letter 'm' fill the page (including actors' names), which become slightly more focused with each new letter. I know I would never watch many of them, but others, eh, maybe, and others still are already favorites. And it's all thanks to the data from my personal viewing history being put to work behind the scenes to influence the results.
 
 ### Enter Elasticsearch
 One piece of the monster puzzle used by Netflix to provide these types of suggestions so rapidly is [Elasticsearch](https://www.elastic.co/products/elasticsearch). Also used by a range of other companies like Facebook, Salesforce, and GitHub, Elasticsearch is a highly scalable open-source search server that runs on Apache Lucene. It works by indexing data spread across any number of nodes within a cluster, making everything searchable in *near* real-time (with only about one-second latency for indexing).
@@ -24,7 +24,7 @@ To simplify getting up and running, I'm going to assume you have [Docker](https:
 docker run -d -p 9200:9200 -p 5601:5601 psvet/elasticsearch-kibana-sense
 ```
 
-This will result in an Elasticsearch cluster running on port `9200`, which you can verify with `curl -X GET http://<your docker host ip>:9200`. We also have [Kibana](https://www.elastic.co/products/kibana) available for viewing our data, as well as the [Sense](https://www.elastic.co/guide/en/sense/master/introduction.html) plugin for easily interacting with the REST API, running on `5601`.
+This will result in an Elasticsearch cluster running on port `9200`, which you can verify with `curl <your docker host ip>:9200`. We also have [Kibana](https://www.elastic.co/products/kibana) available for viewing our data, as well as the [Sense](https://www.elastic.co/guide/en/sense/master/introduction.html) plugin for easily interacting with the REST API, running on `5601`.
 
 ### In Action
 Now let's see a little of what it can do.
@@ -38,7 +38,7 @@ In your browser, navigate to `<your docker host ip>:5601/app/sense`, and you'll 
 The [Elasticsearch REST API](https://www.elastic.co/guide/en/elasticsearch/reference/2.3/index.html) makes it possible to perform basic (and far-from-basic) CRUD operations at the index and document level, as well as monitor your clusters and nodes.
 
 ### Creating an index
-First, let's create a basic index for a social network. In the lefthand Sense panel paste (or type, and take advantage of the awesome IntelliSense):
+First, let's create an index for a bare-bones social network. In the lefthand Sense panel paste (or type, and take advantage of the awesome IntelliSense):
 
 ```
 PUT /socialnetwork
@@ -73,24 +73,24 @@ PUT /socialnetwork
 }
 ```
 
-As you might as have guessed from the above JSON blob, in addition to creating the `socialnetwork` index, we explicitly mapped a `user` type. But I'll let you in on a secret: we could have left this request object empty, then simply created a `user` document and let Elasticsearch handle the mapping *dynamically*. We could have even started creating documents without initially creating the index! All we'd have to do is change the path to `/socialnetwork/user`, and provide the user data in the body straightaway.
+As you might as have guessed from the above JSON blob, in addition to creating the `socialnetwork` index, we explicitly mapped a `user` type. But I'll let you in on a secret: we could have left out the request object (`PUT /socialnetwork`), then simply created a `user` document and let Elasticsearch handle the mapping *dynamically*. We could have even started creating documents without initially creating the index! All we'd have to do is change the path to `/socialnetwork/user`, and provide the user data in the body straightaway.
 
 So with that said, let's ditch this thing by running `DELETE /socialnetwork`, and start from scratch.
 
 ### Bulk API
 Now we'll take advantage of the `_bulk` API to create two new indexes and upload a ton of documents all at once.
 
-First, we need to <a href='/assets/data/mock-data.json' download>download</a> our mock data in raw JSON format. (<a href='https://raw.githubusercontent.com/TechnologyAdvice/technologyadvice.github.io/master/assets/data/mock-data.json' target='_blank'>preview</a>)
+First, we need to <a href='/assets/data/mock-data.json' download>download</a> some mock data in raw JSON format. (<a href='https://raw.githubusercontent.com/TechnologyAdvice/technologyadvice.github.io/master/assets/data/mock-data.json' target='_blank'>preview</a>)
 
-Then in the command line, navigate to where it's stored, and upload it to Elasticsearch:
+Then in the command line, navigate to where the data is stored, and upload it to Elasticsearch:
 
 ```
-curl -XPOST http://<your docker host ip>:9200/_bulk --data-binary "@mock-data.json"
+curl -XPOST <your docker host ip>:9200/_bulk --data-binary "@mock-data.json"
 ```
 
 (You'll see a huge blob of JSON full of the newly created documents.)
 
-We left out the index and type before `/_bulk` in the above URI, because the file included data for separate indexes, so documents were distinguished like this:
+We left out the index and type before `/_bulk` in the above URI, because the file included documents for separate indexes, which were distinguished like this:
 
 ```
 {"index":{"_index":"socialnetwork","_type":"user","_id":"1"}}
@@ -108,7 +108,7 @@ You can perform basic CRUD on any document by specifying its id in the URI, such
 The [bulk API](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html) also supports multi-document CRUD operations, but we won't get into that here.
 
 ### Searching
-Obviously *this* is what Elasticsearch is all about, but hopefully you'll forgive the long introduction in the name of actually having data to search. Thanks to the bulk POST, our node now has a `socialnetwork` index with 1000 unique `user` documents, and a `localsearch` index with 500 `business` documents, so let's dig in.
+Obviously *this* is what Elasticsearch is all about, but hopefully you'll forgive the long introduction in the name of actually having data to search. Thanks to the bulk upload, our node now has a `socialnetwork` index with 1000 unique `user` documents, and a `localsearch` index with 500 `business` documents, so let's dig in.
 
 While Elasticsearch's [URI search](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-uri-request.html) capabilities are wildly robust, we'll focus mainly on the [Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html), and frankly still barely brush the surface.
 
@@ -140,8 +140,8 @@ Let's take a quick look at the response:
     "failed": 0
   },
   "hits": {
-    "total": 4,
-    "max_score": 5.253246,
+    "total": 39,
+    "max_score": 4.1971407,
     "hits": [ ... matching documents ... ]
   }
 }
@@ -163,7 +163,7 @@ GET /socialnetwork/user/_search
 }
 ```
 
-This searches for the word `'New'` in the `city` and `state` fields, and retrieves the document if there is a match in *either* one. You'll notice, however, that we're still only running a single query. We'll circle back to this when we get to compound queries.
+This searches for the word `'New'` in the `city` and `state` fields, and retrieves the document if there is a match in *either* one. You'll notice, however, that we're querying both fields for the same value. You can't query fields independently with `multi_match`, but you'll see a number of ways around this when we get to compound queries.
 
 Finally, there's `match_all`, which retrieves all records within the given scope, and is as simple as this:
 
@@ -210,7 +210,7 @@ As with all examples here, there are many other term-level queries available, no
 ### Compound queries
 All of the queries described so far can be combined into [compound queries](https://www.elastic.co/guide/en/elasticsearch/reference/current/compound-queries.html). This is where things really start to pick up, but we'll continue to stay pretty basic.
 
-The `bool` query uses one or more boolean clauses—`must`, `must_not`, `should`, and `filter`—each with one or more nested queries (including potentially *more* `bool` queries, with *their* own clauses and queries), to determine matching results. The `must` and `filter` clauses are very similar, with the only difference being that `filter` ignores the query's score. The `should` clause contributes to the document's score if the nested query is satisfied, but has no effect otherwise.
+The `bool` query uses one or more boolean clauses—`must`, `must_not`, `should`, and `filter`—each with one or more nested queries (including potentially *more* `bool` queries, with *their own* clauses and queries), to determine matching results. The `must` and `filter` clauses are very similar, with the only difference being that `filter` ignores the query's score. The `should` clause contributes to the document's score if the nested query is satisfied, but has no effect otherwise.
 
 ```
 GET /socialnetwork/user/_search
@@ -255,7 +255,7 @@ GET /_search
             {
               "multi_match": {
                 "fields": [ "skills", "tags" ],
-                "query": "GSX"
+                "query": "Algorithms"
               }
             },
             {
@@ -282,8 +282,9 @@ GET /_search
   }
 }
 ```
+Here we're looking for users that are ideally skilled in Algorithms and somewhere between 26 and 35 years old (`should`), definitely located in New York state (`must`), and defintely *not* older than 50 or skilled in Art Exhibitions (`must_not`). (Gotta draw the line somewhere. Thanks, mock data.) At the same time, we're looking for businesses that are also in New York, and ideally have `'Algorithms'` in their tags.
 
-> One thing to keep in mind when mapping type properties: if you're going to run `indices` queries, there is no way to differentiate between identical field names across indexes or types. For example, not that's an issue for us now, but we wouldn't be able to query against a user's `city` independently from a business'. Whoops.
+> One thing to keep in mind when mapping type properties: if you're going to run `indices` queries, there is no way to differentiate between identical field names across indexes or types. For example, not that it's an issue for us now, but we wouldn't be able to query against a user's `city` or `state` independently from a business'. Whoops. It's not pretty, but we could distinguish them as `user_state`, `business_state`, etc.
 
 ### Pagination
 
