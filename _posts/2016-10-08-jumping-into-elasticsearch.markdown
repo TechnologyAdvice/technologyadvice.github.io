@@ -12,6 +12,8 @@ It's a quiet Saturday, it's wet out, and I don't feel like doing much, so I open
 ### Enter Elasticsearch
 One piece of the monster puzzle used by Netflix to provide these types of suggestions so rapidly is [Elasticsearch](https://www.elastic.co/products/elasticsearch). Also used by a range of other companies like Facebook, Salesforce, and GitHub, Elasticsearch is a highly scalable open-source search server that runs on Apache Lucene. It works by indexing data spread across any number of nodes within a cluster, making everything searchable in *near* real-time (with only about one-second latency for indexing).
 
+In this article, we'll look into the general architecture and capabilities of Elasticsearch by loading up a local instance with mock data, and firing off some useful queries. The examples will touch on basic API usage, and I encourage you to spend extra time building on each one.
+
 ### Architecture Overview
 A **cluster**, as mentioned above, is a collection of **nodes** (servers). Nodes store any number of **indexes**, which can generally be thought of as databases of similar records, or in this case, types.  A **type** is similar to a table within a relational database, consisting of a name and a mapping (schema) to describe a **document** class.
 
@@ -31,11 +33,9 @@ Now let's see a little of what it can do.
 
 In your browser, navigate to `<your docker host ip>:5601/app/sense`, and you'll see something like this:
 
-<div style="text-align:center;margin: 1rem auto;">
-  <img src="/assets/images/posts/jumping-into-elasticsearch/sense.png" alt="Sense" title="Sense" />
-</div>
+![Sense](/assets/images/posts/jumping-into-elasticsearch/sense.png)
 
-The [Elasticsearch REST API](https://www.elastic.co/guide/en/elasticsearch/reference/2.3/index.html) makes it possible to perform basic (and far-from-basic) CRUD operations at the index and document level, as well as monitor your clusters and nodes.
+The [Elasticsearch REST API](https://www.elastic.co/guide/en/elasticsearch/reference/2.3/index.html) makes it possible to perform basic (and far-from-basic) CRUD operations at the index and document level (with some exceptions), as well as monitor your clusters and nodes.
 
 ### Creating an index
 First, let's create an index for a bare-bones social network. In the lefthand Sense panel paste (or type, and take advantage of the awesome IntelliSense):
@@ -75,10 +75,14 @@ PUT /socialnetwork
 
 As you might as have guessed from the above JSON blob, in addition to creating the `socialnetwork` index, we explicitly mapped a `user` type. But I'll let you in on a secret: we could have left out the request object (`PUT /socialnetwork`), then simply created a `user` document and let Elasticsearch handle the mapping *dynamically*. We could have even started creating documents without initially creating the index! All we'd have to do is change the path to `/socialnetwork/user`, and provide the user data in the body straightaway.
 
+> While [dynamic mapping](https://www.elastic.co/guide/en/elasticsearch/guide/current/dynamic-mapping.html) is advantageous in many ways (especially as a means of getting started with Elasticsearch, as you'll see), you'll find it's not ideal for fields where a specific format might be required (dates), or if you want to restrict the type of data that can be added. With explicit mapping, we could add the `dynamic` flag to the root `user` object, as well as any individual `object` fields, and set it to `false` to quietly ignore unknown fields, or `strict` to throw an exception.
+
+**Important**: One major CRUD exception, as mentioned above, is that mappings *cannot be updated*. In such cases where that's desired or necessary, you'll have to create a new index and reload any existing data. 
+
 So with that said, let's ditch this thing by running `DELETE /socialnetwork`, and start from scratch.
 
 ### Bulk API
-Now we'll take advantage of the `_bulk` API to create two new indexes and upload a ton of documents all at once.
+Now we'll take advantage of the [bulk API](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html) to create two new indexes and upload a ton of documents all at once.
 
 First, we need to <a href='/assets/data/mock-data.json' download>download</a> some mock data in raw JSON format. (<a href='https://raw.githubusercontent.com/TechnologyAdvice/technologyadvice.github.io/master/assets/data/mock-data.json' target='_blank'>preview</a>)
 
@@ -103,9 +107,67 @@ You can generally narrow the scope of your requests by including the index and/o
 
 Each document also has a simple integer id, but if no id is specified on creation, a unique alphanumeric string will be generated automatically.
 
-You can perform basic CRUD on any document by specifying its id in the URI, such as `GET /socialnetwork/user/1`.
+You can perform basic CRUD on any document by specifying its id in the URI. Go ahead and run `GET /socialnetwork/user/1` and you should see this response:
 
-The [bulk API](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html) also supports multi-document CRUD operations, but we won't get into that here.
+```
+{
+  "_index": "socialnetwork",
+  "_type": "user",
+  "_id": "1",
+  "_version": 1,
+  "found": true,
+  "_source": {
+    "first_name": "Cheryl",
+    "last_name": "Ferguson",
+    "gender": "Female",
+    "city": "Miami",
+    "state": "Florida",
+    "age": 36,
+    "has_pets": false,
+    "skills": [
+      "Mining",
+      "OS X",
+      "Revenue Cycle Management",
+      "HSDPA",
+      "Commercial Piloting"
+    ]
+  }
+}
+```
+
+You see some details about the document and its location, and the data itself inside `_source`. As you can guess, new documents default to `_version: 1`, and any updates would increment the version. If we wanted to update this document, we could either make a request to `PUT /socialnetwork/user/1` with any updates included in the full document object (`_source`, above), or more simply, we could do a [partial update](https://www.elastic.co/guide/en/elasticsearch/guide/current/partial-updates.html) using `/_update`, like so:
+
+```
+POST /socialnetwork/user/1/_update
+{
+  "doc": {
+    "skills": [
+      "Mining",
+      "OS X",
+      "Revenue Cycle Management",
+      "HSDPA",
+      "Commercial Piloting",
+      "Elasticsearch"
+    ]
+  }
+}
+```
+
+Notice the method is now `POST`, but besides that, all `_update` requires is mapping any updated fields inside a `doc` object. Run that, and you'll see the document version is incremented:
+
+```
+{
+  "_index": "socialnetwork",
+  "_type": "user",
+  "_id": "1",
+  "_version": 2,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "failed": 0
+  }
+}
+```
 
 ### Searching
 Obviously *this* is what Elasticsearch is all about, but hopefully you'll forgive the long introduction in the name of actually having data to search. Thanks to the bulk upload, our node now has a `socialnetwork` index with 1000 unique `user` documents, and a `localsearch` index with 500 `business` documents, so let's dig in.
@@ -231,7 +293,7 @@ GET /socialnetwork/user/_search
       "must": { "match": { "state": "New York" } },
       "must_not": {
         "range": {
-          "age": { "gt": 50 }
+          "age": { "gt": 40 }
         }
       }
     }
@@ -271,7 +333,7 @@ GET /_search
           "must_not": [
             {
               "range": {
-                "age": { "gt": 50 }
+                "age": { "gt": 40 }
               }
             },
             { "match": { "skills": "Art Exhibitions" } }
@@ -282,7 +344,7 @@ GET /_search
   }
 }
 ```
-Here we're looking for users that are ideally skilled in Algorithms and somewhere between 26 and 35 years old (`should`), definitely located in New York state (`must`), and defintely *not* older than 50 or skilled in Art Exhibitions (`must_not`). (Gotta draw the line somewhere. Thanks, mock data.) At the same time, we're looking for businesses that are also in New York, and ideally have `'Algorithms'` in their tags.
+Here we're looking for users that are ideally skilled in Algorithms and somewhere between 26 and 35 years old (`should`), definitely located in New York state (`must`), and definitely *not* older than 40 or skilled in Art Exhibitions (`must_not`). (Gotta draw the line somewhere. Thanks, mock data.) At the same time, we're looking for businesses that are also in New York, and ideally have `'Algorithms'` in their tags.
 
 > One thing to keep in mind when mapping type properties: if you're going to run `indices` queries, there is no way to differentiate between identical field names across indexes or types. For example, not that it's an issue for us now, but we wouldn't be able to query against a user's `city` or `state` independently from a business'. Whoops. It's not pretty, but we could distinguish them as `user_state`, `business_state`, etc.
 
