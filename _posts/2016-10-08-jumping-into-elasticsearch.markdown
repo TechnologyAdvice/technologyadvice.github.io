@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Jumping into Elasticsearch"
-date:   2016-10-08 10:00:00
+date:   2016-10-30 11:00:00
 categories: elasticsearch analytics data
 author: peter.svetlichny
 cover: /assets/images/covers/bungee.jpg
