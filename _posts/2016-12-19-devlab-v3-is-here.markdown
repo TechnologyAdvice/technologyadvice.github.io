@@ -69,7 +69,7 @@ devlab lint test cover
 
 #### Cleaner Output
 
-Previously indicators of output (task startup, execution, shutdown notifications) were verbose. Probably more verbose than anyone liked, so we pared them down to some basic indicators activity and let you focus on the output of the task.
+Previously, output (task startup, execution, shutdown notifications) were verbose. Probably more verbose than anyone liked, so we pared them down to some basic indicators of activity and let you focus on the output of the task.
 
 ![demo](/assets/images/posts/devlab-v3-is-here/demo.gif)
 
