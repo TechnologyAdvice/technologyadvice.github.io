@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Devlab v3 Is Here"
-date: 2015-12-19 8:00:00
+date: 2016-12-19 8:00:00
 categories: docker devlab development
 author: kent.safranski
 cover: /assets/images/covers/container-load.jpg
